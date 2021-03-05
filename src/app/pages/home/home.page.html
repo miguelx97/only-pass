@@ -1,0 +1,26 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title slot="start" class="ion-no-padding">
+      <!-- <div style="width: 37px; margin: 3px 10px;">
+        <img alt="logo" src="/assets/icon/favicon3.png">
+      </div> -->
+      <ion-icon name="key-outline" style="font-size: 30px; margin: auto 10px;"></ion-icon>
+    </ion-title>
+
+    <ion-searchbar 
+    slot="secondary" 
+    animated 
+    showCancelButton="focus" 
+    placeholder="¿Qué necesitas?" 
+    (ionChange)="onSearch($event)"
+    [debounce]="1000"
+    class="ion-padding"></ion-searchbar>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <div id="container">
+    <strong>Ready to create an app?</strong>
+    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
+  </div>
+</ion-content>
