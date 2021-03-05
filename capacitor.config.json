@@ -1,0 +1,13 @@
+{
+  "appId": "com.miguelmartin.easypasswords",
+  "appName": "very simple password manager",
+  "bundledWebRuntime": false,
+  "npmClient": "npm",
+  "webDir": "www",
+  "plugins": {
+    "SplashScreen": {
+      "launchShowDuration": 0
+    }
+  },
+  "cordova": {}
+}

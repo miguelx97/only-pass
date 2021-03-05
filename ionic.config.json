@@ -1,0 +1,7 @@
+{
+  "name": "very simple password manager",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
