@@ -7,8 +7,8 @@ const routes: Routes = [
     loadChildren: () => import('./pages/home/home.module').then( m => m.HomePageModule)
   },
   {
-    path: ':id',
-    loadChildren: () => import('./pages/credential-detail/credential-detail.module').then( m => m.CredentialDetailPageModule)
+    path: 'credential-manager',
+    loadChildren: () => import('./pages/credential-manager/credential-manager.module').then( m => m.CredentialManagerPageModule)
   }
 ];
 

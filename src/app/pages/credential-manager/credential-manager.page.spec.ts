@@ -1,19 +1,19 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { IonicModule } from '@ionic/angular';
 
-import { CredentialDetailPage } from './credential-detail.page';
+import { CredentialManagerPage } from './credential-manager.page';
 
-describe('CredentialDetailPage', () => {
-  let component: CredentialDetailPage;
-  let fixture: ComponentFixture<CredentialDetailPage>;
+describe('CredentialManagerPage', () => {
+  let component: CredentialManagerPage;
+  let fixture: ComponentFixture<CredentialManagerPage>;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ CredentialDetailPage ],
+      declarations: [ CredentialManagerPage ],
       imports: [IonicModule.forRoot()]
     }).compileComponents();
 
-    fixture = TestBed.createComponent(CredentialDetailPage);
+    fixture = TestBed.createComponent(CredentialManagerPage);
     component = fixture.componentInstance;
     fixture.detectChanges();
   }));

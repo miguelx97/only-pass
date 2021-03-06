@@ -2,14 +2,14 @@
   <ion-toolbar>
     <div class="flex">
       <div id="title">
-        <ion-icon name="key-outline" style="font-size: 30px; margin: auto 10px"></ion-icon>
+        <ion-icon name="key-outline" style="font-size: 30px; margin: auto 10px" color="primary"></ion-icon>
       </div>
       <div class="limit-size" style="width: 100%;">
         <ion-searchbar 
         slot="secondary" 
         animated 
         showCancelButton="focus" 
-        placeholder="¿Qué necesitas?" 
+        placeholder="¿Qué buscas?" 
         (ionChange)="onSearch($event)"
         [debounce]="1000"
         style="padding:3px 7px;"></ion-searchbar>
@@ -20,7 +20,7 @@
 
 <ion-content>
   <div class="limit-size">
-    <ion-card *ngFor="let credential of lCredentials">
+    <ion-card *ngFor="let credential of lCredentials" (click)="showManager(credential)">
       <ion-card-title>
         {{credential.title}} 
         <span class="url">{{credential.url}}</span>
@@ -32,16 +32,15 @@
       </ion-card-content>
       <div class="icons">
         <ion-icon name="eye-off-outline"></ion-icon>
-        <ion-icon name="ellipsis-vertical-outline"></ion-icon>
+        <ion-icon name="ellipsis-vertical-outline"></ion-icon> <!--ion-popover-->
       </div>
     </ion-card>
   </div>
-  <!-- <ion-list class="limit-size">
-    <ion-item *ngFor="let credential of lCredentials" (click)="goCredentialDetail(credential)">
-      <ion-label>
-        <h2>{{credential.title}}</h2>
-        <p><span>{{credential.usernameOrEmail}}</span>  <span class="password">{{credential.password | password}}</span></p>
-      </ion-label>
-    </ion-item>
-  </ion-list> -->
+
+  <ion-fab horizontal="end" vertical="bottom" slot="fixed" (click)="showManager()">
+    <ion-fab-button color="primary">
+      <ion-icon name="add" color="light"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
 </ion-content>

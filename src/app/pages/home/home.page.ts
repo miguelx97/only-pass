@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { NavigationExtras, Router } from '@angular/router';
+import { ModalController } from '@ionic/angular';
 import { Credential } from 'src/app/model/credential';
 import { CryptingService } from 'src/app/services/crypting.service';
+import { CredentialManagerPage } from '../credential-manager/credential-manager.page';
 
 @Component({
   selector: 'app-home',
@@ -12,7 +14,10 @@ export class HomePage implements OnInit{
 
   lCredentials:Credential[];
 
-  constructor(private cryptingSvc:CryptingService, private router: Router) {
+  constructor(
+    private cryptingSvc:CryptingService,
+     private router: Router
+    , private modalCtrl: ModalController) {
     cryptingSvc.setSecretKey("hola");
   }
 
@@ -39,4 +44,23 @@ export class HomePage implements OnInit{
     return value.toLocaleLowerCase().replace(" ", "_").replace(/[\{\}\|\\\^\[\]\`\;\/\?\:\@\&\=\+\$\,]/g,'');
   }
 
+  async showManager(credential?:Credential){
+    console.log("showManager");
+    const modal = await this.modalCtrl.create({
+      component: CredentialManagerPage,
+      componentProps: {
+        credential
+      },
+      showBackdrop: true,
+      mode:	"ios",
+      cssClass: 'custom-modals'
+    });
+
+    modal.onWillDismiss().then((data)=>{
+      console.log(data);
+      //custom code
+    });
+
+    return await modal.present();
+  }
 }
