@@ -6,28 +6,29 @@ import * as CryptoJS from 'crypto-js';
 })
 export class CryptingService {
 
-  constructor() { }
+  private encryptSecretKey:string
 
-
-  encryptData(data) {
-
+  encryptData(toEncrypt:string):string {
     try {
-      return CryptoJS.AES.encrypt(JSON.stringify(data), this.encryptSecretKey).toString();
+      return CryptoJS.AES.encrypt(JSON.stringify(toEncrypt), this.encryptSecretKey).toString();
     } catch (e) {
       console.log(e);
     }
   }
 
-  decryptData(data) {
-
+  decryptData(toDecrypt:string):string {
     try {
-      const bytes = CryptoJS.AES.decrypt(data, this.encryptSecretKey);
+      const bytes = CryptoJS.AES.decrypt(toDecrypt, this.encryptSecretKey);
       if (bytes.toString()) {
-        return JSON.parse(bytes.toString(CryptoJS.enc.Utf8));
+        return bytes.toString(CryptoJS.enc.Utf8);
       }
-      return data;
+      return toDecrypt;
     } catch (e) {
       console.log(e);
     }
+  }
+
+  setSecretKey(encryptSecretKey:string){
+    this.encryptSecretKey = encryptSecretKey;
   }
 }

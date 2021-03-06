@@ -24,3 +24,21 @@
 @import "~@ionic/angular/css/text-alignment.css";
 @import "~@ionic/angular/css/text-transformation.css";
 @import "~@ionic/angular/css/flex-utils.css";
+
+
+.limit-size{
+    max-width: 500px;
+    margin: auto;
+}
+
+.flex{
+    display: flex;
+}
+.half {
+    width: 50%;
+}
+
+
+
+
+

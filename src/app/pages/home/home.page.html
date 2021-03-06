@@ -1,26 +1,41 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title slot="start" class="ion-no-padding">
-      <!-- <div style="width: 37px; margin: 3px 10px;">
-        <img alt="logo" src="/assets/icon/favicon3.png">
-      </div> -->
-      <ion-icon name="key-outline" style="font-size: 30px; margin: auto 10px;"></ion-icon>
+      <ion-icon name="key-outline" style="font-size: 30px; margin: auto 10px"></ion-icon>
     </ion-title>
-
-    <ion-searchbar 
-    slot="secondary" 
-    animated 
-    showCancelButton="focus" 
-    placeholder="¿Qué necesitas?" 
-    (ionChange)="onSearch($event)"
-    [debounce]="1000"
-    class="ion-padding"></ion-searchbar>
+    <div class="limit-size">
+      <ion-searchbar 
+      slot="secondary" 
+      animated 
+      showCancelButton="focus" 
+      placeholder="¿Qué necesitas?" 
+      (ionChange)="onSearch($event)"
+      [debounce]="1000"
+      class="ion-padding"></ion-searchbar>
+    </div>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
+<ion-content>
+  <div class="limit-size">
+    <ion-card *ngFor="let credential of lCredentials">
+      <ion-card-title>
+        {{credential.title}} 
+        <span class="url">{{credential.url}}</span>
+        <!-- <ion-icon name="link-outline"></ion-icon> -->
+      </ion-card-title>
+      <ion-card-content class="flex">
+        <p class="half">{{credential.usernameOrEmail}}</p>
+        <p class="half" class="password">{{credential.password | password}}</p>
+      </ion-card-content>
+    </ion-card>
   </div>
+  <!-- <ion-list class="limit-size">
+    <ion-item *ngFor="let credential of lCredentials" (click)="goCredentialDetail(credential)">
+      <ion-label>
+        <h2>{{credential.title}}</h2>
+        <p><span>{{credential.usernameOrEmail}}</span>  <span class="password">{{credential.password | password}}</span></p>
+      </ion-label>
+    </ion-item>
+  </ion-list> -->
 </ion-content>
