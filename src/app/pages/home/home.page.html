@@ -1,17 +1,19 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title slot="start" class="ion-no-padding">
-      <ion-icon name="key-outline" style="font-size: 30px; margin: auto 10px"></ion-icon>
-    </ion-title>
-    <div class="limit-size">
-      <ion-searchbar 
-      slot="secondary" 
-      animated 
-      showCancelButton="focus" 
-      placeholder="¿Qué necesitas?" 
-      (ionChange)="onSearch($event)"
-      [debounce]="1000"
-      class="ion-padding"></ion-searchbar>
+    <div class="flex">
+      <div id="title">
+        <ion-icon name="key-outline" style="font-size: 30px; margin: auto 10px"></ion-icon>
+      </div>
+      <div class="limit-size" style="width: 100%;">
+        <ion-searchbar 
+        slot="secondary" 
+        animated 
+        showCancelButton="focus" 
+        placeholder="¿Qué necesitas?" 
+        (ionChange)="onSearch($event)"
+        [debounce]="1000"
+        style="padding:3px 7px;"></ion-searchbar>
+      </div>
     </div>
   </ion-toolbar>
 </ion-header>
@@ -28,6 +30,10 @@
         <p class="half">{{credential.usernameOrEmail}}</p>
         <p class="half" class="password">{{credential.password | password}}</p>
       </ion-card-content>
+      <div class="icons">
+        <ion-icon name="eye-off-outline"></ion-icon>
+        <ion-icon name="ellipsis-vertical-outline"></ion-icon>
+      </div>
     </ion-card>
   </div>
   <!-- <ion-list class="limit-size">

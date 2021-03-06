@@ -1,8 +1,9 @@
-ion-title {
+#title {
   max-width: 50px; 
+  align-self: center;
 }
 @media only screen and (min-width: 600px) {
-  ion-title {
+  #title {
     position: absolute;
   }
 }
@@ -20,6 +21,8 @@ ion-card {
   ion-card-title {
       font-size: medium;
       margin-bottom: 5px;
+      font-weight: lighter;
+      letter-spacing: 1px;
 
       .url{
         font-size: small;
@@ -37,5 +40,15 @@ ion-card {
       p{
         margin: 0;
       }
+  }
+
+  .icons {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 20px;
+    ion-icon {
+      margin-left: 8px;
+    }
   }
 }
