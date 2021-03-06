@@ -29,13 +29,13 @@ export class CredentialManagerPage implements OnInit {
     switch(this.mode){
       case Mode.New: return 'Añadir credenciales'
       case Mode.View: return 'Tus credenciales'
-      case Mode.Modify: return 'Actualizando credenciales'
+      case Mode.Edit: return 'Actualizando credenciales'
     }
   }
 
   @ViewChild('password') passwordField:HTMLIonInputElement ;
   modify() {
-    this.mode = Mode.Modify;
+    this.mode = Mode.Edit;
     this.passwordField.setFocus();
   }
 
@@ -51,5 +51,5 @@ export class CredentialManagerPage implements OnInit {
 enum Mode{
   New,
   View,
-  Modify
+  Edit
 }
