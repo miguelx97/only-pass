@@ -10,8 +10,8 @@
         animated 
         showCancelButton="focus" 
         placeholder="¿Qué buscas?" 
-        (ionChange)="onSearch($event)"
-        [debounce]="1000"
+        (ionChange)="onSearch($event.detail.value)"
+        [debounce]="300"
         style="padding:3px 7px;"></ion-searchbar>
       </div>
     </div>
@@ -19,20 +19,20 @@
 </ion-header>
 
 <ion-content>
-  <div class="limit-size">
-    <ion-card *ngFor="let credential of lCredentials" (click)="showManager(credential)">
+  <div class="limit-size" style="margin-top: 18px;">
+    <ion-card *ngFor="let credential of lFilteredCredentials" (click)="showManager(credential)">
       <ion-card-title>
         {{credential.title}} 
         <span class="url">{{credential.url}}</span>
         <!-- <ion-icon name="link-outline"></ion-icon> -->
       </ion-card-title>
       <ion-card-content class="flex">
-        <p class="half">{{credential.usernameOrEmail}}</p>
-        <p class="half" class="password">{{credential.password | password}}</p>
+        <p class="email">{{credential.usernameOrEmail}}</p>
+        <p class="password" [class]="(credential.options?.show)?'showing':'hidden'">{{credential.password | password:credential.options?.show }}</p>
       </ion-card-content>
       <div class="icons">
-        <ion-icon name="eye-off-outline"></ion-icon>
-        <ion-icon name="ellipsis-vertical-outline"></ion-icon> <!--ion-popover-->
+        <ion-icon [name]="(credential.options?.show)?'eye-outline':'eye-off-outline'" (click)="showHidePw(credential, $event)"></ion-icon>
+        <ion-icon name="ellipsis-vertical-outline" (click)="settingsPopover(credential, $event)"></ion-icon> <!--ion-popover-->
       </div>
     </ion-card>
   </div>

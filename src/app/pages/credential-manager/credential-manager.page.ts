@@ -1,6 +1,7 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { AfterContentChecked, AfterContentInit, AfterViewChecked, Component, OnInit, ViewChild } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { Credential } from 'src/app/model/credential';
+import { CryptingService } from 'src/app/services/crypting.service';
 
 @Component({
   selector: 'app-credential-manager',
@@ -12,18 +13,24 @@ export class CredentialManagerPage implements OnInit {
   credential:Credential
   mode:Mode;
   eMode = Mode;
-  constructor(private modalCtrl: ModalController) { }
+  constructor(private modalCtrl: ModalController, private cryptingSvc:CryptingService) { }
 
   ngOnInit() {
-    console.log(this.credential);
-    
     if(!this.credential){
       this.credential = new Credential();
       this.mode = Mode.New;
     }else{
       this.mode = Mode.View;
+      setTimeout(()=> {
+        this.credential.password = this.cryptingSvc.decryptData(this.credential.password);
+      }, 0);
+
     }
   }
+  
+  // ngAfterViewChecked(){
+  //   this.credential.password = "this.cryptingSvc.decryptData(this.credential.password)";
+  // }
 
   titulo(){
     switch(this.mode){

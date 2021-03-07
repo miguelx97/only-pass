@@ -4,6 +4,7 @@ export class Credential {
     usernameOrEmail:string;
     password:string;
     url:string;
+    options:{show:boolean};
 
     build(id:string, title:string, usernameOrEmail:string, password:string, url:string){
         this.id = id;

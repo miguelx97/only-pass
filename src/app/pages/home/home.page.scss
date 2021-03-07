@@ -7,10 +7,24 @@
     position: absolute;
   }
 }
+
+.email {
+  width: 55%;
+  padding-right: 1px;
+}
+
 .password{
-  font-size: large;
-  letter-spacing: 2.5px;
-  font-weight: bold;
+  width: 45%;
+  padding-left: 1px;
+  &.hidden{
+    font-size: large;
+    letter-spacing: 2.5px;
+    font-weight: bold;
+  }
+  &.showing{
+    font-size: large;
+    font-weight: lighter;
+  }
 }
 
 ion-card {
@@ -39,6 +53,10 @@ ion-card {
       
       p{
         margin: 0;
+        align-self: center;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
       }
   }
 
@@ -52,3 +70,4 @@ ion-card {
     }
   }
 }
+

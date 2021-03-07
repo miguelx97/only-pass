@@ -1,14 +1,16 @@
 import { Pipe, PipeTransform } from '@angular/core';
+import { CryptingService } from '../services/crypting.service';
 
 @Pipe({
   name: 'password'
 })
 export class PasswordPipe implements PipeTransform {
 
-  transform(value: string): unknown {
-    let password = "••••••••••";
+  constructor(private cryptingSvc:CryptingService){}
+  transform(value: string, show:boolean = false): string {
+    if(!show) return "••••••••••"
 
-    return password;
+    return this.cryptingSvc.decryptData(value);
   }
 
 }
