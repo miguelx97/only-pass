@@ -1,0 +1,61 @@
+
+<ion-content>
+  <div class="ion-header">
+    <ion-icon name="key-outline" color="primary"></ion-icon>
+  </div>
+  <div class="limit-size">
+
+
+
+    <ion-slides #loginSlide class="mainSlide">
+      <ion-slide>
+        <ion-card class="ion-margin login-card">
+          <ion-card-title class="ion-text-center">Iniciar sesión</ion-card-title>
+          <form  #loginForm="ngForm" (ngSubmit)="login(loginForm.value)">
+            <ion-item>
+              <ion-label position="stacked">Usuario<ion-text color="primary">*</ion-text></ion-label>
+              <ion-input type="text" name="user" placeholder="minombre95" ngModel required></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-label position="stacked">Contraseña<ion-text color="primary">*</ion-text></ion-label>
+              <ion-input type="password" name="password" placeholder="··········" ngModel minlength="6" required></ion-input>
+            </ion-item>
+            <div class="buttons">
+              <ion-button type="submit" [disabled]="loginForm.invalid" expand="block">Iniciar sesión</ion-button>
+              <ion-button (click)="showRegister()" expand="block" fill="clear">Crear cuenta</ion-button>
+            </div>
+          </form>
+        </ion-card>
+      </ion-slide>
+
+      <ion-slide>
+        <ion-card class="ion-margin login-card">
+          <ion-card-title class="ion-text-center">Crear cuenta</ion-card-title>
+          <form  #loginForm="ngForm" (ngSubmit)="register(loginForm.value)">
+            <ion-item>
+              <ion-label position="stacked">Usuario <ion-text color="primary">*</ion-text></ion-label>
+              <ion-input type="text" name="user" placeholder="minombre95" ngModel required></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-label position="stacked">Contraseña<ion-text color="primary">*</ion-text></ion-label>
+              <ion-input type="password" name="password" placeholder="··········" ngModel minlength="6" required></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-label position="stacked">Repetir contraseña<ion-text color="primary">*</ion-text></ion-label>
+              <ion-input type="password" name="password2" placeholder="··········" ngModel minlength="6" required></ion-input>
+            </ion-item>
+            <div class="buttons">
+              <ion-button type="submit" [disabled]="loginForm.invalid" expand="block">Aceptar</ion-button>
+              <ion-button (click)="showLogin()" expand="block" fill="clear">Iniciar sesión</ion-button>
+            </div>
+          </form>
+        </ion-card>
+      </ion-slide>
+    </ion-slides>
+  </div>
+  <app-btn-show-credential-manager></app-btn-show-credential-manager>
+</ion-content>
+
+  <!-- <ion-card class="credential-manager-card">
+    <app-credential-manager></app-credential-manager>
+  </ion-card> -->

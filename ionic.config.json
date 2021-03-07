@@ -1,5 +1,5 @@
 {
-  "name": "very simple password manager",
+  "name": "Passy · very simple password manager",
   "integrations": {
     "capacitor": {}
   },

@@ -1,14 +1,14 @@
-import { AfterContentChecked, AfterContentInit, AfterViewChecked, Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { Credential } from 'src/app/model/credential';
 import { CryptingService } from 'src/app/services/crypting.service';
 
 @Component({
   selector: 'app-credential-manager',
-  templateUrl: './credential-manager.page.html',
-  styleUrls: ['./credential-manager.page.scss'],
+  templateUrl: './credential-manager.component.html',
+  styleUrls: ['./credential-manager.component.scss'],
 })
-export class CredentialManagerPage implements OnInit {
+export class CredentialManagerComponent implements OnInit {
 
   credential:Credential
   mode:Mode;
@@ -20,10 +20,10 @@ export class CredentialManagerPage implements OnInit {
       this.credential = new Credential();
       this.mode = Mode.New;
     }else{
-      this.mode = Mode.View;
+      if(!this.mode) this.mode = Mode.View;
       setTimeout(()=> {
         this.credential.password = this.cryptingSvc.decryptData(this.credential.password);
-      }, 0);
+      }, 100);
 
     }
   }
@@ -55,7 +55,7 @@ export class CredentialManagerPage implements OnInit {
 
 }
 
-enum Mode{
+export enum Mode{
   New,
   View,
   Edit

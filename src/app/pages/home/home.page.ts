@@ -1,10 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { NavigationExtras, Router } from '@angular/router';
-import { ModalController, PopoverController } from '@ionic/angular';
+import { PopoverController } from '@ionic/angular';
 import { CredentialSettingsPopoverComponent, Option } from 'src/app/components/credential-settings-popover/credential-settings-popover.component';
 import { Credential } from 'src/app/model/credential';
 import { CryptingService } from 'src/app/services/crypting.service';
-import { CredentialManagerPage } from '../credential-manager/credential-manager.page';
 
 @Component({
   selector: 'app-home',
@@ -19,7 +18,6 @@ export class HomePage implements OnInit{
   constructor(
     private cryptingSvc:CryptingService
     , private router: Router
-    , private modalCtrl: ModalController
     , private popoverController: PopoverController) {
   }
 
@@ -57,26 +55,6 @@ export class HomePage implements OnInit{
     return value.toLocaleLowerCase().replace(" ", "_").replace(/[\{\}\|\\\^\[\]\`\;\/\?\:\@\&\=\+\$\,]/g,'');
   }
 
-  async showManager(credential?:Credential){
-    const modal = await this.modalCtrl.create({
-      component: CredentialManagerPage,
-      componentProps: {
-        credential
-      },
-      showBackdrop: true,
-      mode:	"ios",
-      cssClass: 'custom-modals',
-
-    });
-
-    // modal.onWillDismiss().then((data)=>{
-    //   console.log(data);
-    //   //custom code
-    // });
-
-    return await modal.present();
-  }
-
   showHidePw(credential:Credential, e){
     e.stopPropagation();
     e.preventDefault();
@@ -96,17 +74,17 @@ export class HomePage implements OnInit{
       component: CredentialSettingsPopoverComponent,
       cssClass: 'popover',
       event: e,
-      translucent: true,
-      componentProps: {credential}
+      translucent: true
+      // , componentProps: {credential}
     });
-    popover.onDidDismiss().then(this.onOptionSelected)
+    // popover.onDidDismiss().then(this.onOptionSelected)
     return await popover.present();
   }
-
+  /*
   onOptionSelected = (data: any) => { 
     console.log(data);     
       switch(data.data?.option){
-        case Option.Modify: {
+        case Option.Update: {
   
           break;
         }
@@ -125,5 +103,6 @@ export class HomePage implements OnInit{
         default: console.log('onOptionSelected', data.option);      
       }
   }
+  */
 }
 
