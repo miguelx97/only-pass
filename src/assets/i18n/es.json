@@ -24,15 +24,15 @@
         , "":""
         , "auth/argument-error":"Error en las credenciales"
         , "auth/user-not-found":"Este usuario no existe"
-        , "":""
+        , "auth/wrong-password":"Contraseña incorrecta"
         , "":""
         , "":""
     }
     
     , "succ": {
         "add-local-credential":"Contraseña guardada en dispositivo\nInicia sesión para sincronizar"
-        , "register":"Bienvenido"
-        , "login":"Bienvenido"
+        , "register":"Bienvenido, {{name}}"
+        , "login":"Bienvenido, {{name}}"
         , "":""
         , "":""
         , "":""

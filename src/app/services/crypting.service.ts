@@ -17,6 +17,7 @@ export class CryptingService {
   }
 
   decryptData(toDecrypt:string, key:string = CryptingService.encryptSecretKey):string {
+
     try {
       const bytes = AES.decrypt(toDecrypt, key);
       if (bytes.toString()) {

@@ -18,10 +18,10 @@
             </ion-item>
             <ion-item>
               <ion-label position="stacked">{{'pw' | translate}}<ion-text color="primary">*</ion-text></ion-label>
-              <ion-input type="password" name="password" placeholder="··········" ngModel minlength="6" required></ion-input>
+              <ion-input type="password" name="password" (keyup.enter)="login(loginForm.value)" placeholder="··········" ngModel minlength="6" required></ion-input>
             </ion-item>
             <div class="buttons">
-              <ion-button type="submit" [disabled]="loginForm.invalid" expand="block">{{'signin-title' | translate}}</ion-button>
+              <ion-button type="submit" expand="block">{{'signin-title' | translate}}</ion-button><!-- [disabled]="loginForm.invalid"-->
               <ion-button (click)="showRegister()" expand="block" fill="clear">{{'signup-title' | translate}}</ion-button>
             </div>
           </form>
@@ -42,7 +42,7 @@
             </ion-item>
             <ion-item>
               <ion-label position="stacked">{{'pw2' | translate}} <req></req></ion-label>
-              <ion-input type="password" name="password2" placeholder="··········" ngModel minlength="6" required></ion-input>
+              <ion-input type="password" name="password2" (keyup.enter)="register(registerForm.value)" placeholder="··········" ngModel minlength="6" required></ion-input>
             </ion-item>
             <div class="buttons">
               <ion-button type="submit" [disabled]="registerForm.invalid" expand="block">Aceptar</ion-button>

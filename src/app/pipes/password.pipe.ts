@@ -7,10 +7,11 @@ import { CryptingService } from '../services/crypting.service';
 export class PasswordPipe implements PipeTransform {
 
   constructor(private cryptingSvc:CryptingService){}
-  transform(value: string, show:boolean = false): string {
+  transform(password: string, show:boolean = false): string {
     if(!show) return "••••••••••"
-
-    return this.cryptingSvc.decryptData(value);
+    console.log(password);
+    
+    return this.cryptingSvc.decryptData(password);
   }
 
 }

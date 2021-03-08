@@ -9,6 +9,8 @@ import { UiService } from './ui.service';
 })
 export class AuthService {
 
+  private currentUser:User
+
   constructor(
     private afAuth:AngularFireAuth
     , private uiSvc:UiService
@@ -17,13 +19,15 @@ export class AuthService {
   async register(username:string, password:string): Promise<boolean> {
       const mail = this.buildMail(username);
       const { user } = await this.afAuth.createUserWithEmailAndPassword(mail, password);
-      return this.uiSvc.success('register', 2000);
+      this.currentUser = User.build(user.uid, username, password);
+      return this.uiSvc.success('register', {name: username.charAt(0).toUpperCase() + username.slice(1)}, 1500);
   }
 
   async login(username:string, password:string): Promise<boolean>  {
       const mail = this.buildMail(username);      
       const { user } = await this.afAuth.signInWithEmailAndPassword(mail, password);
-      return this.uiSvc.success('login', 2000);
+      this.currentUser = User.build(user.uid, username, password);
+      return this.uiSvc.success('login', {name: username.charAt(0).toUpperCase() + username.slice(1)}, 1500);
   }
 
   buildMail(username:string):string{
@@ -35,5 +39,9 @@ export class AuthService {
     }
 
     throw new ErrorSimple('invalid-username','el username no cumple la regex');
+  }
+
+  getCurrentUser():User{
+    return this.currentUser
   }
 }

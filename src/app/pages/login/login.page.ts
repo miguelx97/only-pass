@@ -42,6 +42,7 @@ export class LoginPage {
 
   async login(loginValues:any){
     try {
+      loginValues = {username:'miguel', password:'mmmmmm'}
       await this.authSvc.login(loginValues.username, loginValues.password);
       this.authSuccess(loginValues.password);   
     } catch(e) {

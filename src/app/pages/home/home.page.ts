@@ -25,7 +25,7 @@ export class HomePage implements OnInit{
   ) {}
 
   ngOnInit(){
-    this.cryptingSvc.setSecretKey("hola");
+    // this.cryptingSvc.setSecretKey("hola");
     this.lCredentials = [];
 
     ////

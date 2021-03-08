@@ -34,9 +34,9 @@ export class UiService {
     return false;
   }
 
-  success(message?:string, duration?:number): boolean{
+  success(message?:string, params?:any, duration?:number): boolean{
     if(!message) return true;
-    this.translate.get('succ.' + message).subscribe((traducido: string) => {
+    this.translate.get('succ.' + message, params).subscribe((traducido: string) => {
       if(traducido) this.toast(traducido, duration);
     });
     return true;
