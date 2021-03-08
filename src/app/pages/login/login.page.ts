@@ -29,8 +29,6 @@ export class LoginPage {
   }
 
   showRegister() {
-    console.log("reg");
-    
     this.slide.lockSwipes(false);
     this.slide.slideTo(1);
     this.slide.lockSwipes(true);

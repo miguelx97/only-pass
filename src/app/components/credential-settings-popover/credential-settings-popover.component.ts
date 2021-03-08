@@ -3,7 +3,8 @@ import { Plugins } from '@capacitor/core';
 import { AlertController, ModalController, PopoverController } from '@ionic/angular';
 import { Credential } from 'src/app/model/credential';
 import { CryptingService } from 'src/app/services/crypting.service';
-import { CredentialManagerComponent, Mode } from '../credential-manager/credential-manager.component';
+import { ModalService } from 'src/app/services/modal.service';
+import { Mode } from '../credential-manager/credential-manager.component';
 
 @Component({
   selector: 'app-credential-settings-popover',
@@ -18,7 +19,7 @@ export class CredentialSettingsPopoverComponent {
   constructor(
     private popoverController: PopoverController
     , private cryptingSvc:CryptingService
-    , private modalCtrl: ModalController
+    , private modalSvc: ModalService
     , public alertCtrl: AlertController
     ) {}
     
@@ -26,8 +27,6 @@ export class CredentialSettingsPopoverComponent {
       this.popoverController.dismiss({option});
     }
 
-
-    
     copyPw(){
     const { Clipboard } = Plugins;
     Clipboard.write({
@@ -75,26 +74,7 @@ export class CredentialSettingsPopoverComponent {
     this.dismiss(Option.Update);
   }
 
-  async showManager(credential?:Credential){
-    const modal = await this.modalCtrl.create({
-      component: CredentialManagerComponent,
-      componentProps: {
-        credential,
-        mode: Mode.Edit
-      },
-      showBackdrop: true,
-      mode:	"ios",
-      cssClass: 'custom-modals',
-    });
-
-    // modal.onWillDismiss().then((data)=>{
-    //   console.log(data);
-    //   //custom code
-    // });
-
-    return await modal.present();
-  }
-
+  showManager = (credential:Credential) => this.modalSvc.showManager(credential, Mode.Edit);
 }
 
 export enum Option{

@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { NavigationExtras, Router } from '@angular/router';
 import { PopoverController } from '@ionic/angular';
+import { Mode } from 'src/app/components/credential-manager/credential-manager.component';
 import { CredentialSettingsPopoverComponent, Option } from 'src/app/components/credential-settings-popover/credential-settings-popover.component';
 import { Credential } from 'src/app/model/credential';
 import { CryptingService } from 'src/app/services/crypting.service';
+import { ModalService } from 'src/app/services/modal.service';
 
 @Component({
   selector: 'app-home',
@@ -18,8 +20,9 @@ export class HomePage implements OnInit{
   constructor(
     private cryptingSvc:CryptingService
     , private router: Router
-    , private popoverController: PopoverController) {
-  }
+    , private popoverController: PopoverController
+    , private modalSvc: ModalService
+  ) {}
 
   ngOnInit(){
     this.cryptingSvc.setSecretKey("hola");
@@ -75,11 +78,14 @@ export class HomePage implements OnInit{
       cssClass: 'popover',
       event: e,
       translucent: true
-      // , componentProps: {credential}
+      , componentProps: {credential}
     });
     // popover.onDidDismiss().then(this.onOptionSelected)
     return await popover.present();
   }
+
+  showManager = (credential:Credential) => this.modalSvc.showManager(credential);
+
   /*
   onOptionSelected = (data: any) => { 
     console.log(data);     
