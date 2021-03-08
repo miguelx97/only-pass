@@ -32,4 +32,8 @@ export class CryptingService {
   setSecretKey(encryptSecretKey:string){
     CryptingService.encryptSecretKey = encryptSecretKey;
   }
+
+  isSecretKeySetted():boolean{
+    return !!CryptingService.encryptSecretKey;
+  }
 }

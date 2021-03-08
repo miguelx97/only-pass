@@ -1,7 +1,9 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { ModalController } from '@ionic/angular';
 import { Credential } from 'src/app/model/credential';
 import { CryptingService } from 'src/app/services/crypting.service';
+import { LocalStoragedCredentialsService } from 'src/app/services/local-storaged-credentials.service';
 
 @Component({
   selector: 'app-credential-manager',
@@ -13,7 +15,11 @@ export class CredentialManagerComponent implements OnInit {
   credential:Credential
   mode:Mode;
   eMode = Mode;
-  constructor(private modalCtrl: ModalController, private cryptingSvc:CryptingService) { }
+  constructor(
+    private modalCtrl: ModalController
+    , private cryptingSvc:CryptingService
+    , private lsCredentialsSvc:LocalStoragedCredentialsService
+  ) { }
 
   ngOnInit() {
     if(!this.credential){
@@ -27,10 +33,23 @@ export class CredentialManagerComponent implements OnInit {
 
     }
   }
-  
-  // ngAfterViewChecked(){
-  //   this.credential.password = "this.cryptingSvc.decryptData(this.credential.password)";
-  // }
+
+  invalidForm:boolean;
+  addUpdateCredential(form:NgForm){
+    this.invalidForm = form.invalid;
+
+    if(this.invalidForm) return;
+
+    debugger;
+    if(this.cryptingSvc.isSecretKeySetted()){
+
+    } else {
+      this.lsCredentialsSvc.addLocalCredential(this.credential);
+      
+    }
+    
+    this.dismiss();
+  }
 
   titulo(){
     switch(this.mode){
@@ -52,7 +71,6 @@ export class CredentialManagerComponent implements OnInit {
     this.mode = Mode.View;
   }
   
-
 }
 
 export enum Mode{
