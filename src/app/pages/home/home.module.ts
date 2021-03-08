@@ -7,6 +7,7 @@ import { HomePage } from './home.page';
 import { HomePageRoutingModule } from './home-routing.module';
 import { PasswordModule } from 'src/app/pipes/password.module';
 import { CredentialsModule } from 'src/app/components/credentials.module';
+import { SharedModule } from 'src/app/shared.module';
 
 
 @NgModule({
@@ -16,7 +17,8 @@ import { CredentialsModule } from 'src/app/components/credentials.module';
     IonicModule,
     HomePageRoutingModule,
     PasswordModule,
-    CredentialsModule
+    CredentialsModule,
+    SharedModule
   ],
   declarations: [HomePage]
 })

@@ -9,7 +9,7 @@
         slot="secondary" 
         animated 
         showCancelButton="focus" 
-        placeholder="¿Qué buscas?" 
+        [placeholder]="'searchbar-placeholder' | translate" 
         (ionChange)="onSearch($event.detail.value)"
         [debounce]="300"
         style="padding:3px 7px;"></ion-searchbar>

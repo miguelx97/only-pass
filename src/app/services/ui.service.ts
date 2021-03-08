@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AlertController, LoadingController, ToastController } from '@ionic/angular';
+import { TranslateService } from '@ngx-translate/core';
+import { first } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -8,7 +10,7 @@ export class UiService {
   
   constructor(
     private toastController: ToastController
-    // , private translate:TranslateService
+    , private translate:TranslateService
     , private loadingController: LoadingController
     , public alert: AlertController) { }
 
@@ -20,7 +22,6 @@ export class UiService {
     toast.present();
   }
     
-/*
   error(error:any): boolean{
 
     let message:string = "";
@@ -47,7 +48,6 @@ export class UiService {
       if(traducido) this.toast(traducido, duration);
     });
   }
-  */
 
   private loadingDialog: HTMLIonLoadingElement;
   async showLoading(msg = 'Un segundo...') {
@@ -87,7 +87,6 @@ export class UiService {
     });
   }
   
-  /*
   async modalInfo(msg:string){
     const header:string = await this.translate.get(msg).pipe(first()).toPromise();
     const body:string = await this.translate.get('info.' + msg).pipe(first()).toPromise();
@@ -98,5 +97,5 @@ export class UiService {
     });
     alert.present();
   }
-  */
+
 }

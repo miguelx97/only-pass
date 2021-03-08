@@ -8,6 +8,7 @@ import { LoginPageRoutingModule } from './login-routing.module';
 
 import { LoginPage } from './login.page';
 import { CredentialsModule } from 'src/app/components/credentials.module';
+import { SharedModule } from 'src/app/shared.module';
 
 @NgModule({
   imports: [
@@ -15,7 +16,8 @@ import { CredentialsModule } from 'src/app/components/credentials.module';
     FormsModule,
     IonicModule,
     LoginPageRoutingModule,
-    CredentialsModule
+    CredentialsModule,
+    SharedModule
   ],
   declarations: [LoginPage]
 })
