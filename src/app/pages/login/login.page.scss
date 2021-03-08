@@ -31,6 +31,7 @@
     0 4px 8px   rgba(0,0,0,0.06), 
     0 8px 16px  rgba(0,0,0,0.06),
     0 16px 32px rgba(0,0,0,0.06);
+    
 
     // form{
     //     min-height: 250px;
@@ -57,13 +58,13 @@
 .no-pws-sync{
     text-align: center;
     position: absolute;
-    bottom: 10px;
-    left: 10px;
+    bottom: 5px;
+    left: 5px;
     display: flex;
     align-items: center;
-    // border: solid 1px var(--ion-color-primary);
-    
-    padding: 4px;
+    border-radius: 10%;    
+    padding: 5px;
+    background: rgba(255, 255, 255, 0.6);
     ion-icon {
         background-color: var(--ion-color-primary);
         color: var(--ion-color-light);

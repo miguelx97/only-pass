@@ -9,7 +9,6 @@ export class PasswordPipe implements PipeTransform {
   constructor(private cryptingSvc:CryptingService){}
   transform(password: string, show:boolean = false): string {
     if(!show) return "••••••••••"
-    console.log(password);
     
     return this.cryptingSvc.decryptData(password);
   }

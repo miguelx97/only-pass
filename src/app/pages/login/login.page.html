@@ -14,11 +14,11 @@
           <form  #loginForm="ngForm" (ngSubmit)="login(loginForm.value)">
             <ion-item>
               <ion-label position="stacked">{{'usuario' | translate}}<ion-text color="primary">*</ion-text></ion-label>
-              <ion-input type="text" name="username" placeholder="minombre95" ngModel minlength="3" required></ion-input>
+              <ion-input type="text" name="username" placeholder="minombre95" ngModel minlength="3" maxlength="30" required></ion-input>
             </ion-item>
             <ion-item>
               <ion-label position="stacked">{{'pw' | translate}}<ion-text color="primary">*</ion-text></ion-label>
-              <ion-input type="password" name="password" (keyup.enter)="login(loginForm.value)" placeholder="··········" ngModel minlength="6" required></ion-input>
+              <ion-input type="password" name="password" (keyup.enter)="login(loginForm.value)" placeholder="··········" ngModel minlength="6" maxlength="30" required></ion-input>
             </ion-item>
             <div class="buttons">
               <ion-button type="submit" expand="block">{{'signin-title' | translate}}</ion-button><!-- [disabled]="loginForm.invalid"-->
@@ -34,15 +34,15 @@
           <form  #registerForm="ngForm" (ngSubmit)="register(registerForm.value)">
             <ion-item>
               <ion-label position="stacked">{{'usuario' | translate}} <req></req></ion-label>
-              <ion-input type="text" name="username" placeholder="minombre95" ngModel minlength="3" required></ion-input>
+              <ion-input type="text" name="username" placeholder="minombre95" ngModel minlength="3" maxlength="30" required></ion-input>
             </ion-item>
             <ion-item>
               <ion-label position="stacked">{{'pw' | translate}} <req></req></ion-label>
-              <ion-input type="password" name="password" placeholder="··········" ngModel minlength="6" required></ion-input>
+              <ion-input type="password" name="password" placeholder="··········" ngModel minlength="6" maxlength="30" required></ion-input>
             </ion-item>
             <ion-item>
               <ion-label position="stacked">{{'pw2' | translate}} <req></req></ion-label>
-              <ion-input type="password" name="password2" (keyup.enter)="register(registerForm.value)" placeholder="··········" ngModel minlength="6" required></ion-input>
+              <ion-input type="password" name="password2" (keyup.enter)="register(registerForm.value)" placeholder="··········" ngModel minlength="6" maxlength="30" required></ion-input>
             </ion-item>
             <div class="buttons">
               <ion-button type="submit" [disabled]="registerForm.invalid" expand="block">Aceptar</ion-button>
@@ -53,10 +53,10 @@
       </ion-slide>
     </ion-slides>
 
-    <div class="no-pws-sync" *ngIf="noPwSyncParam">
-      <ion-icon name="alert-outline"></ion-icon>
-      <span>{{'no-pws-sync' | translate:noPwSyncParam}}</span>
-    </div>
   </div>
 </ion-content>
+<div class="no-pws-sync" *ngIf="noPwSyncParam">
+  <ion-icon name="alert-outline"></ion-icon>
+  <span>{{'no-pws-sync' | translate:noPwSyncParam}}</span>
+</div>
 <app-btn-show-credential-manager></app-btn-show-credential-manager>
