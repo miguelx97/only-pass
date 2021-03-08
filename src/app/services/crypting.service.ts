@@ -8,17 +8,17 @@ export class CryptingService {
 
   private static encryptSecretKey:string
 
-  encryptData(toEncrypt:string):string {
+  encryptData(toEncrypt:string, key:string = CryptingService.encryptSecretKey):string {
     try {
-      return AES.encrypt(toEncrypt, CryptingService.encryptSecretKey).toString();
+      return AES.encrypt(toEncrypt, key).toString();
     } catch (e) {
       console.error(e);
     }
   }
 
-  decryptData(toDecrypt:string):string {
+  decryptData(toDecrypt:string, key:string = CryptingService.encryptSecretKey):string {
     try {
-      const bytes = AES.decrypt(toDecrypt, CryptingService.encryptSecretKey);
+      const bytes = AES.decrypt(toDecrypt, key);
       if (bytes.toString()) {
         return bytes.toString(enc.Utf8);
       }

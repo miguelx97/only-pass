@@ -4,6 +4,7 @@ import { ModalController } from '@ionic/angular';
 import { Credential } from 'src/app/model/credential';
 import { CryptingService } from 'src/app/services/crypting.service';
 import { LocalStoragedCredentialsService } from 'src/app/services/local-storaged-credentials.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-credential-manager',
@@ -40,12 +41,12 @@ export class CredentialManagerComponent implements OnInit {
 
     if(this.invalidForm) return;
 
-    debugger;
+    this.credential.password = this.cryptingSvc.encryptData(this.credential.password, environment.cryptingKey);
+
     if(this.cryptingSvc.isSecretKeySetted()){
 
     } else {
       this.lsCredentialsSvc.addLocalCredential(this.credential);
-      
     }
     
     this.dismiss();

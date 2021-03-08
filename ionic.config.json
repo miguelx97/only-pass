@@ -1,5 +1,5 @@
 {
-  "name": "Very Simple Password Manager",
+  "name": "OnlyPass",
   "integrations": {
     "capacitor": {}
   },

@@ -14,37 +14,36 @@ export class UiService {
     , private loadingController: LoadingController
     , public alert: AlertController) { }
 
-  private async toast(message:string, duration:number = 3000) {
+  private async toast(message:string, duration:number = 3000, cssClass:string = 'simle') {
     const toast = await this.toastController.create({
-      message: message,
-      duration: duration
+      message, duration, cssClass
     });
     toast.present();
   }
     
-  error(error:any): boolean{
+  error(error:any, duration?:number): boolean{
 
     let message:string = "";
-
+    console.error(error);    
     if (typeof error === "string") message = error;
     else message = error.code;
 
     this.translate.get('err.' + message).subscribe((traducido: string) => {
-      if(traducido) this.toast(traducido);  
+      if(traducido) this.toast(traducido, duration, 'error');  
     });
     return false;
   }
 
-  success(message?:string): boolean{
+  success(message?:string, duration?:number): boolean{
     if(!message) return true;
     this.translate.get('succ.' + message).subscribe((traducido: string) => {
-      if(traducido) this.toast(traducido);
+      if(traducido) this.toast(traducido, duration);
     });
     return true;
   }
 
   info(message?:string, duration?:number) {
-    this.translate.get(message).subscribe((traducido: string) => {
+    this.translate.get('info.' + message).subscribe((traducido: string) => {
       if(traducido) this.toast(traducido, duration);
     });
   }

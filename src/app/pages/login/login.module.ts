@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
@@ -17,8 +17,10 @@ import { SharedModule } from 'src/app/shared.module';
     IonicModule,
     LoginPageRoutingModule,
     CredentialsModule,
+    SharedModule,
     SharedModule
   ],
-  declarations: [LoginPage]
+  declarations: [LoginPage],
+  schemas: [ NO_ERRORS_SCHEMA ]
 })
 export class LoginPageModule {}

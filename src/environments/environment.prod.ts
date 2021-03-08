@@ -1,3 +1,4 @@
 export const environment = {
-  production: true
+  production: true,
+  cryptingKey: "jMXE6xWN3G"
 };

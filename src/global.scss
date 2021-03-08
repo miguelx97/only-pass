@@ -51,5 +51,22 @@
     --width: 220px;
   }
 
+req {
+    &:after {
+        color: var(--ion-color-primary);
+        content: "*";
+    }
+}
 
-
+ion-toast{
+    --border-radius: 10px;
+    text-align: center;
+    font-size: 15px;
+        
+    &.simple{
+        --background: rgba(68, 68, 68, 0.9);	
+    }
+    &.error{
+        --background: rgba(174, 49, 0, 0.9);
+    }
+}

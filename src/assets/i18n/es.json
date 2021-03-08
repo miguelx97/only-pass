@@ -1,4 +1,45 @@
 {
     "searchbar-placeholder":"¿Qué buscas?"
+    , "signin-title":"Iniciar sesión"
+    , "signup-title":"Crear cuenta"
+    , "aceptar":"Aceptar"
+    , "cancelar":"Cancelar"
+    , "usuario":"Usuario"
+    , "pw":"Contraseña"
+    , "pw2":"Repetir contraseña"
+    , "no-pws-sync":"Tienes {{numCredentials}} sin sincronizar"
     , "":""
+    , "":""
+    , "":""
+    
+    , "info": {
+        "no-pws-sync":"Tienes contraseñas sin sincronizar"
+        , "":""
+
+    }
+    
+    , "err": {
+        "pw-no-match":"Las contraseñas no coinciden"
+        , "invalid-username":"Nombre de usuario inválido"
+        , "":""
+        , "auth/argument-error":"Error en las credenciales"
+        , "auth/user-not-found":"Este usuario no existe"
+        , "":""
+        , "":""
+        , "":""
+    }
+    
+    , "succ": {
+        "add-local-credential":"Contraseña guardada en dispositivo\nInicia sesión para sincronizar"
+        , "register":"Bienvenido"
+        , "login":"Bienvenido"
+        , "":""
+        , "":""
+        , "":""
+    }
+    
+    , "": {
+        "":""
+        , "":""
+    }
 }
