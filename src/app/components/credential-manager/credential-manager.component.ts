@@ -3,7 +3,9 @@ import { NgForm } from '@angular/forms';
 import { ModalController } from '@ionic/angular';
 import { Credential } from 'src/app/model/credential';
 import { CryptingService } from 'src/app/services/crypting.service';
+import { FirestoreCredentialsService } from 'src/app/services/firestore-credentials.service';
 import { LocalStoragedCredentialsService } from 'src/app/services/local-storaged-credentials.service';
+import { UtilsService } from 'src/app/services/utils.service';
 import { environment } from 'src/environments/environment';
 
 @Component({
@@ -20,32 +22,37 @@ export class CredentialManagerComponent implements OnInit {
     private modalCtrl: ModalController
     , private cryptingSvc:CryptingService
     , private lsCredentialsSvc:LocalStoragedCredentialsService
+    , private firestoreCredSvc:FirestoreCredentialsService
+    , private utils:UtilsService
   ) { }
 
+  @ViewChild('title') titleField:HTMLIonInputElement ;
   ngOnInit() {
     if(!this.credential){
       this.credential = new Credential();
       this.mode = Mode.New;
     }else{
       if(!this.mode) this.mode = Mode.View;
-      setTimeout(()=> {
+      this.credential = Credential.copy(this.credential);
+      this.utils.wait().then(()=>{
         this.credential.password = this.cryptingSvc.decryptData(this.credential.password);
-      }, 100);
-
+      });
     }
+    
+    if(this.mode !== Mode.View) this.utils.wait(700).then(() => this.titleField.setFocus());
   }
 
   invalidForm:boolean;
-  addUpdateCredential(form:NgForm){
+  async saveUpdateCredential(form:NgForm){
     this.invalidForm = form.invalid;
-
     if(this.invalidForm) return;
 
-    this.credential.password = this.cryptingSvc.encryptData(this.credential.password, environment.cryptingKey);
-
-    if(this.cryptingSvc.isSecretKeySetted()){
-
+    // await this.utils.wait();
+    if(CryptingService.isSecretKeySetted()){
+      this.credential.password = this.cryptingSvc.encryptData(this.credential.password);
+      this.firestoreCredSvc.saveUpdate(this.credential);
     } else {
+      this.credential.password = this.cryptingSvc.encryptData(this.credential.password, environment.cryptingKey);
       this.lsCredentialsSvc.addLocalCredential(this.credential);
     }
     

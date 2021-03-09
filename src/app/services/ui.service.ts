@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AlertController, LoadingController, ToastController } from '@ionic/angular';
-import { TranslateService } from '@ngx-translate/core';
-import { first } from 'rxjs/operators';
+import { UtilsService } from './utils.service';
 
 @Injectable({
   providedIn: 'root'
@@ -10,9 +9,9 @@ export class UiService {
   
   constructor(
     private toastController: ToastController
-    , private translate:TranslateService
     , private loadingController: LoadingController
-    , public alert: AlertController) { }
+    , public alert: AlertController
+    , private utils:UtilsService) { }
 
   private async toast(message:string, duration:number = 3000, cssClass:string = 'simle') {
     const toast = await this.toastController.create({
@@ -28,24 +27,25 @@ export class UiService {
     if (typeof error === "string") message = error;
     else message = error.code;
 
-    this.translate.get('err.' + message).subscribe((traducido: string) => {
+    this.utils.trans(message, 'err').then((traducido: string)=> {
       if(traducido) this.toast(traducido, duration, 'error');  
     });
+
     return false;
   }
 
   success(message?:string, params?:any, duration?:number): boolean{
     if(!message) return true;
-    this.translate.get('succ.' + message, params).subscribe((traducido: string) => {
+    this.utils.trans(message, params, 'succ').then((traducido: string)=> {
       if(traducido) this.toast(traducido, duration);
     });
     return true;
   }
 
   info(message?:string, duration?:number) {
-    this.translate.get('info.' + message).subscribe((traducido: string) => {
+    this.utils.trans(message).then((traducido: string)=> {
       if(traducido) this.toast(traducido, duration);
-    });
+    })
   }
 
   private loadingDialog: HTMLIonLoadingElement;
@@ -61,10 +61,12 @@ export class UiService {
     this.loadingDialog.dismiss();   
   }
   
-  async confirm(header:string, confirmBtn:string = 'Aceptar'):Promise<boolean> {
+  async confirm(header:string, message?:string, confirmBtn:string = 'Aceptar', params?:any):Promise<boolean> {
+    header = await this.utils.trans(header);
+    message = await this.utils.trans(message, params);
     return new Promise(async resolve => {
       const alert = await this.alert.create({
-        header: header,
+        header, message,
         buttons: [
           {
             text: 'Cancelar',
@@ -87,8 +89,8 @@ export class UiService {
   }
   
   async modalInfo(msg:string){
-    const header:string = await this.translate.get(msg).pipe(first()).toPromise();
-    const body:string = await this.translate.get('info.' + msg).pipe(first()).toPromise();
+    const header:string = await this.utils.trans(msg);
+    const body:string = await this.utils.trans(msg, null, 'info');
     const alert = await this.alert.create({
       header: header,
       message: body,

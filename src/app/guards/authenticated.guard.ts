@@ -8,10 +8,12 @@ import { CryptingService } from '../services/crypting.service';
   providedIn: 'root'
 })
 export class AuthenticatedGuard implements CanActivate {
-  constructor(private cryptingSvc:CryptingService, private router:Router){}
+  constructor(private router:Router){}
   canActivate(route: ActivatedRouteSnapshot): boolean {
   
-    const isKey = this.cryptingSvc.isSecretKeySetted();
+    const isKey = CryptingService.isSecretKeySetted();
+    console.log('isKey', isKey);
+    
     if(!isKey) this.router.navigateByUrl('login')
     return isKey;
   }

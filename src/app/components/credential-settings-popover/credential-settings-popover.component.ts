@@ -3,7 +3,9 @@ import { Plugins } from '@capacitor/core';
 import { AlertController, ModalController, PopoverController } from '@ionic/angular';
 import { Credential } from 'src/app/model/credential';
 import { CryptingService } from 'src/app/services/crypting.service';
+import { FirestoreCredentialsService } from 'src/app/services/firestore-credentials.service';
 import { ModalService } from 'src/app/services/modal.service';
+import { UiService } from 'src/app/services/ui.service';
 import { Mode } from '../credential-manager/credential-manager.component';
 
 @Component({
@@ -20,7 +22,8 @@ export class CredentialSettingsPopoverComponent {
     private popoverController: PopoverController
     , private cryptingSvc:CryptingService
     , private modalSvc: ModalService
-    , public alertCtrl: AlertController
+    , private firestoreCredSvc: FirestoreCredentialsService
+    , private uiSvc: UiService
     ) {}
     
     dismiss(option?:Option){
@@ -32,6 +35,7 @@ export class CredentialSettingsPopoverComponent {
     Clipboard.write({
       string: this.cryptingSvc.decryptData(this.credential.password)
     });
+    this.uiSvc.info('pw-copiada', 1500)
     this.dismiss(Option.CopyPw);
   }
 
@@ -40,33 +44,13 @@ export class CredentialSettingsPopoverComponent {
     let url = this.credential.url;
     if(!url.startsWith('https://') || !url.startsWith('http://')) url = 'https://' + url.replace('www.', '');
     await Browser.open({ url });
+    // this.uiSvc.info('abriendo-url', 1500)
     this.dismiss(Option.LinkWeb);
   }
 
-  delete(){
-    this.deleteConfirm();
+  async delete(){
     this.dismiss(Option.Delete);
-  }
-  
-  async deleteConfirm() {
-    const alert = await this.alertCtrl.create({
-      cssClass: 'my-custom-class',
-      header: 'Eliminar',
-      message: `Estás seguro de que quieres borrar ${this.credential.title}`,
-      buttons: [
-        {text: 'Cancelar', role: 'cancel', cssClass: 'secondary'}, 
-        {
-          text: 'Eliminar',
-          handler: this.deleteConfirmed
-        }
-      ]
-    });
-    
-    await alert.present();
-  }
-  
-  deleteConfirmed(){
-    console.log('deleteConfirmed');
+    this.firestoreCredSvc.remove(this.credential)
   }
 
   update(){

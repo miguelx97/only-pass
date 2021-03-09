@@ -10,12 +10,14 @@ const { Storage } = Plugins;
 export class LocalStoragedCredentialsService {
 
   private localCredentials:Credential[];
+  private storageName = "localCredentials";
 
   constructor(private uiSvc:UiService) { }
 
   async loadLocalCredentials(force:boolean = false) {
     if(this.localCredentials && !force) return;
-    const storagedCredentials = (await Storage.get({key: 'localCredentials'})).value;
+    
+    const storagedCredentials = (await Storage.get({key: this.storageName})).value;
     if(storagedCredentials === null) {
       this.localCredentials = [];
     } else {
@@ -33,7 +35,7 @@ export class LocalStoragedCredentialsService {
       await this.loadLocalCredentials();
       this.localCredentials.push(credential);
       await Storage.set({
-        key: 'localCredentials',
+        key: this.storageName,
         value: JSON.stringify(this.localCredentials)
       });
       this.uiSvc.success('add-local-credential', 4000);
@@ -43,13 +45,12 @@ export class LocalStoragedCredentialsService {
   }
 
   async numStoragedCredential():Promise<number> {
+    await this.loadLocalCredentials();
+    return this.localCredentials?.length || 0;
+  }
 
-    if(this.localCredentials) return this.localCredentials?.length ?? 0;
-    console.log("R");
-    
-    const storagedCredentials = (await Storage.get({key: 'localCredentials'})).value;
-    const localCredentials:[] = JSON.parse(storagedCredentials);
-    return localCredentials?.length ?? 0;
+  clean(){
+    Storage.remove({ key: this.storageName })
   }
 
 }

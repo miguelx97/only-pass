@@ -4,16 +4,24 @@
     , "signup-title":"Crear cuenta"
     , "aceptar":"Aceptar"
     , "cancelar":"Cancelar"
+    , "eliminar":"eliminar"
     , "usuario":"Usuario"
     , "pw":"Contraseña"
     , "pw2":"Repetir contraseña"
     , "no-pws-sync":"Tienes {{numCredentials}} sin sincronizar"
-    , "":""
+    , "eliminar-conf":"Estás seguro de que quieres borrar {{title}}"
+    , "titulo":"Título"
+    , "username-email":"Usuario o Correo"
+    , "web":"Página web"
+    , "add-cred-btn":"Añadir contraseña"
+    , "pw-copiada":"Contraseña copiada"
     , "":""
     , "":""
     
     , "info": {
         "no-pws-sync":"Tienes contraseñas sin sincronizar"
+        , "":""
+        , "":""
         , "":""
 
     }
@@ -21,6 +29,8 @@
     , "err": {
         "pw-no-match":"Las contraseñas no coinciden"
         , "invalid-username":"Nombre de usuario inválido"
+        , "save-cred":"Asegúrate de rellenar los campos obrigatorios (*) y que ningún campo contenga más de 50 caracteres."
+        , "":""
         , "":""
         , "auth/argument-error":"Error en las credenciales"
         , "auth/user-not-found":"Este usuario no existe"
@@ -33,7 +43,10 @@
         "add-local-credential":"Contraseña guardada en dispositivo\nInicia sesión para sincronizar"
         , "register":"Bienvenido, {{name}}"
         , "login":"Bienvenido, {{name}}"
-        , "":""
+        , "cred-deleted":"Credenciales eliminadas"
+        , "cred-updated":"Has actualizado tus credenciales"
+        , "cred-saved":"Contraseña guardada"
+        , "pw-sync":"Contraseñas sincronizadas"
         , "":""
         , "":""
     }

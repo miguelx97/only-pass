@@ -19,13 +19,12 @@ export class LoginPage {
     private lsCredentialsSvc:LocalStoragedCredentialsService
     , private authSvc:AuthService
     , private uiSvc:UiService
-    , private cryptingSvc:CryptingService
     , private router:Router
     ) { }
 
   noPwSyncParam:any
   async ionViewDidEnter() {    
-    this.slide?.lockSwipes( true );   
+    this.slide?.lockSwipes( true );
     this.syncMsg();
   }
 
@@ -61,7 +60,7 @@ export class LoginPage {
   }
 
   authSuccess(password:string){
-    this.cryptingSvc.setSecretKey(password);
+    CryptingService.setSecretKey(password);
     this.router.navigateByUrl("");
   }
 

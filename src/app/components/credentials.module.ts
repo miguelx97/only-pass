@@ -4,6 +4,7 @@ import { CredentialManagerComponent } from './credential-manager/credential-mana
 import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 import { BtnShowCredentialManagerComponent } from './btn-show-credential-manager/btn-show-credential-manager.component';
+import { TranslateModule } from '@ngx-translate/core';
 
 
 
@@ -13,6 +14,7 @@ import { BtnShowCredentialManagerComponent } from './btn-show-credential-manager
     CommonModule,
     FormsModule,
     IonicModule,
+    TranslateModule
   ],
   exports: [CredentialManagerComponent, BtnShowCredentialManagerComponent],
   schemas: [ NO_ERRORS_SCHEMA ]

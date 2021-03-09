@@ -29,11 +29,11 @@ export class CryptingService {
     }
   }
 
-  setSecretKey(encryptSecretKey:string){
+  static setSecretKey(encryptSecretKey:string){
     CryptingService.encryptSecretKey = encryptSecretKey;
   }
 
-  isSecretKeySetted():boolean{
+  static isSecretKeySetted():boolean{
     return !!CryptingService.encryptSecretKey;
   }
 }

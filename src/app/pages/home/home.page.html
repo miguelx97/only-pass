@@ -20,7 +20,7 @@
 
 <ion-content>
   <div class="limit-size" style="margin-top: 18px;">
-    <ion-card *ngFor="let credential of lFilteredCredentials" (click)="showManager(credential)">
+    <ion-card *ngFor="let credential of lFilteredCredentials | async" (click)="showManager(credential)">
       <ion-card-title>
         {{credential.title}} 
         <span class="url">{{credential.url}}</span>

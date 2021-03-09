@@ -1,13 +1,14 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { ErrorSimple } from '../model/errors';
-import { User } from '../model/user';
 import { UiService } from './ui.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
+
+  static UID:string
 
   constructor(
     private afAuth:AngularFireAuth
@@ -17,12 +18,14 @@ export class AuthService {
   async register(username:string, password:string): Promise<boolean> {
       const mail = this.buildMail(username);
       const { user } = await this.afAuth.createUserWithEmailAndPassword(mail, password);
+      AuthService.UID = user.uid;
       return this.uiSvc.success('register', {name: username.charAt(0).toUpperCase() + username.slice(1)}, 1500);
   }
 
   async login(username:string, password:string): Promise<boolean>  {
       const mail = this.buildMail(username);      
       const { user } = await this.afAuth.signInWithEmailAndPassword(mail, password);
+      AuthService.UID = user.uid;
       return this.uiSvc.success('login', {name: username.charAt(0).toUpperCase() + username.slice(1)}, 1500);
   }
 
@@ -36,4 +39,5 @@ export class AuthService {
 
     throw new ErrorSimple('invalid-username','el username no cumple la regex');
   }
+
 }
