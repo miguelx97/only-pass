@@ -109,5 +109,15 @@ export class HomePage implements OnInit{
   }
 
   showManager = (credential:Credential) => this.modalSvc.showManager(credential);
+
+  goSettings(){
+    /*
+    Cambiar idioma.
+    Cambiar orden.
+    Como funciona.
+    Sobre la app.
+    Sobre el desarrollador.
+    */
+  }
 }
 

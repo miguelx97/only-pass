@@ -1,10 +1,17 @@
-#title {
+.bar-icon {
   max-width: 50px; 
   align-self: center;
+  ion-icon{
+    font-size: 30px; 
+    margin: auto 10px;
+  }
 }
 @media only screen and (min-width: 600px) {
-  #title {
+  .bar-icon {
     position: absolute;
+  //   &#icon-options{
+  //     right: 0;
+  //   }
   }
 }
 
@@ -78,3 +85,11 @@ ion-card {
   }
 }
 
+#settings-btn{
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  padding: 10px;
+  font-size: 20px;
+  opacity: .5;
+}

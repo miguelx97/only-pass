@@ -4,7 +4,6 @@ import { Observable } from 'rxjs';
 import { Credential } from '../model/credential';
 import { AuthService } from './auth.service';
 import { UiService } from './ui.service';
-import { UtilsService } from './utils.service';
 
 @Injectable({
   providedIn: 'root'
@@ -25,10 +24,13 @@ export class FirestoreCredentialsService {
   getAll():Observable<Credential[]>{
     try {
       const queryCollection: AngularFirestoreCollection<Credential> = this.firestore.collection("credentials"
-      , ref => ref.where('ownerId', '==', AuthService.UID).orderBy('lastUpdateTime', 'desc')
+      , ref => ref.where('ownerId', '==', AuthService.UID).orderBy('title', 'asc')
       );
 
-      return queryCollection.valueChanges({ idField: 'id'});
+      return queryCollection.valueChanges({ idField: 'id'})
+      // .pipe(map(lCredentials => {
+      //   return lCredentials.map(cred => {return Credential.copy(cred);})
+      // }))
     } catch(e) {
       this.uiSvc.error(e);
     }
@@ -51,15 +53,16 @@ export class FirestoreCredentialsService {
 
   async save(credential:Credential){
     const currentDate = new Date();
-    const metadata = {ownerId : AuthService.UID, insertTime: currentDate, lastUpdateTime: new Date()};
+    // const metadata = {ownerId : AuthService.UID, insertTime: currentDate, lastUpdateTime: new Date()};
+    const metadata = {ownerId : AuthService.UID};
     const credentialObj = Object.assign(metadata, credential);
     // await this.utils.wait(1000);
     await this.collection.add(credentialObj);
   }
 
   async update(credential:Credential){
-    const credentialObj = Object.assign({lastUpdateTime: new Date()}, credential);
-      await this.collection.doc(credential.id).update(credentialObj);
+    // const credentialObj = Object.assign({lastUpdateTime: new Date()}, credential);
+      await this.collection.doc(credential.id).update(credential);
   }
 
   async remove(credential:Credential){

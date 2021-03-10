@@ -1,8 +1,8 @@
-<ion-header [translucent]="true">
+<ion-header>
   <ion-toolbar>
     <div class="flex">
-      <div id="title">
-        <ion-icon name="key-outline" style="font-size: 30px; margin: auto 10px" color="primary"></ion-icon>
+      <div class="bar-icon">
+        <ion-icon name="key-outline" color="primary"></ion-icon>
       </div>
       <div class="limit-size" style="width: 100%;">
         <ion-searchbar 
@@ -14,6 +14,9 @@
         [debounce]="300"
         style="padding:3px 7px;"></ion-searchbar>
       </div>
+      <!-- <div class="bar-icon" id="icon-options">
+        <ion-icon name="settings-outline" color="medium"></ion-icon>
+      </div> -->
     </div>
   </ion-toolbar>
 </ion-header>
@@ -21,6 +24,7 @@
 <ion-content>
   <div class="limit-size" style="margin-top: 18px;">
     <ion-card *ngFor="let credential of lFilteredCredentials | async" (click)="showManager(credential)">
+      <!-- {{credential | json}} -->
       <ion-card-title>
         {{credential.title}} 
         <span class="url">{{credential.url}}</span>
@@ -38,3 +42,5 @@
   </div>
 </ion-content>
 <app-btn-show-credential-manager></app-btn-show-credential-manager>
+
+<ion-icon name="settings-outline" id="settings-btn" (click)="goSettings()"></ion-icon>

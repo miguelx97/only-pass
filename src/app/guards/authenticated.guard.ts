@@ -1,7 +1,5 @@
 import { Injectable } from '@angular/core';
-import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree, Router } from '@angular/router';
-import { Observable } from 'rxjs';
-import { AuthService } from '../services/auth.service';
+import { CanActivate, Router } from '@angular/router';
 import { CryptingService } from '../services/crypting.service';
 
 @Injectable({
@@ -9,10 +7,10 @@ import { CryptingService } from '../services/crypting.service';
 })
 export class AuthenticatedGuard implements CanActivate {
   constructor(private router:Router){}
-  canActivate(route: ActivatedRouteSnapshot): boolean {
+  canActivate(): boolean {
   
     const isKey = CryptingService.isSecretKeySetted();
-    console.log('isKey', isKey);
+    // console.log('isKey', isKey);
     
     if(!isKey) this.router.navigateByUrl('login')
     return isKey;
