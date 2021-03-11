@@ -1,0 +1,72 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/"></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{'menu' | translate}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="limit-size">
+    
+    <!-- SETTINGS -->
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title>{{'ajustes' | translate}}</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <ion-list>
+          <ion-item>
+            <ion-label>{{'idioma' | translate}}</ion-label>
+            <ion-select interface="popover" value="language">
+              <ion-select-option value="en">{{'es' | translate}}</ion-select-option>
+              <ion-select-option value="es">{{'en' | translate}}</ion-select-option>
+            </ion-select>
+          </ion-item>
+          <ion-item>
+            <ion-label>{{'tema' | translate}}</ion-label>
+            <ion-select interface="popover" value="order">
+              <ion-select-option value="alf">{{'claro' | translate}}</ion-select-option>
+              <ion-select-option value="upt">{{'oscuro' | translate}}</ion-select-option>
+            </ion-select>
+          </ion-item>
+        </ion-list>
+      </ion-card-content>
+    </ion-card>
+  
+    <!-- INFO -->
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title>{{'about' | translate}}</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <ion-list>
+          <ion-item detail>
+            <ion-label>{{'sobre-seguridad' | translate}}</ion-label>
+          </ion-item>
+          <ion-item detail>
+            <ion-label>{{'sobre-programador' | translate}}</ion-label>
+          </ion-item>
+        </ion-list>
+      </ion-card-content>
+    </ion-card>
+
+    <!-- PERFIL -->
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title>{{'perfil' | translate}}</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <ion-list>
+          <ion-item detail>
+            <ion-label>{{'cambiar-pass' | translate}}</ion-label>
+          </ion-item>
+          <ion-item detail>
+            <ion-label>{{'borrar-cuenta' | translate}}</ion-label>
+          </ion-item>
+        </ion-list>
+      </ion-card-content>
+    </ion-card>
+  </div>
+</ion-content>

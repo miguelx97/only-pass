@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
-import { TranslateService } from '@ngx-translate/core';
-import { Plugins } from '@capacitor/core';
+import { SettingsService } from './services/settings.service';
 
 @Component({
   selector: 'app-root',
@@ -8,24 +7,8 @@ import { Plugins } from '@capacitor/core';
   styleUrls: ['app.component.scss'],
 })
 export class AppComponent {
-  constructor(private translate: TranslateService) {
-    this.setLanguage();
-  }
-  
-  private async setLanguage() {
-    const { Storage } = Plugins;
-    let language = 'es';
-    const languageLs = (await Storage.get({key: 'language'})).value;
-    if(languageLs){
-      language = languageLs;
-    } else{
-      const { Device } = Plugins;
-      const languageDevice: string = (await Device.getLanguageCode()).value;
-      if(!languageDevice.startsWith('es')) language = 'en';
-      await Storage.set({ key: 'language', value: language });
-    }
-    console.log(language);
-    this.translate.setDefaultLang(language);
-    this.translate.use(language);
+  constructor(private settingsSvc:SettingsService) {
+    this.settingsSvc.setLanguage();
+    this.settingsSvc.setTheme();
   }
 }

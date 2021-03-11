@@ -1,7 +1,9 @@
 {
     "searchbar-placeholder":"¿Qué buscas?"
     , "signin-title":"Iniciar sesión"
+    , "signin-btn":"Iniciar sesión"
     , "signup-title":"Crear cuenta"
+    , "signup-btn":"Aceptar"
     , "aceptar":"Aceptar"
     , "cancelar":"Cancelar"
     , "eliminar":"eliminar"

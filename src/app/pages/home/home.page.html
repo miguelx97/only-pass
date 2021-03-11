@@ -25,7 +25,7 @@
   <div class="limit-size" style="margin-top: 18px;">
     <ion-card *ngFor="let credential of lFilteredCredentials | async" (click)="showManager(credential)">
       <!-- {{credential | json}} -->
-      <ion-card-title>
+      <ion-card-title class="credential-card-title">
         {{credential.title}} 
         <span class="url">{{credential.url}}</span>
         <!-- <ion-icon name="link-outline"></ion-icon> -->
@@ -43,4 +43,4 @@
 </ion-content>
 <app-btn-show-credential-manager></app-btn-show-credential-manager>
 
-<ion-icon name="settings-outline" id="settings-btn" (click)="goSettings()"></ion-icon>
+<ion-icon name="settings-outline" id="settings-btn" routerLink="menu"></ion-icon>

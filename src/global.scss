@@ -1,12 +1,6 @@
 /*
  * App Global CSS
  * ----------------------------------------------------------------------------
- * Put style rules here that you want to apply globally. These styles are for
- * the entire app and not just one component. Additionally, this file can be
- * used as an entry point to import other CSS/Sass files to be included in the
- * output CSS.
- * For more information on global stylesheets, visit the documentation:
- * https://ionicframework.com/docs/layout/global-stylesheets
  */
 
 /* Core CSS required for Ionic components to work properly */
@@ -19,12 +13,28 @@
 @import '~@ionic/angular/css/display.css';
 
 /* Optional CSS utils that can be commented out */
-@import "~@ionic/angular/css/padding.css";
-@import "~@ionic/angular/css/float-elements.css";
+// @import "~@ionic/angular/css/padding.css";
+// @import "~@ionic/angular/css/float-elements.css";
 @import "~@ionic/angular/css/text-alignment.css";
-@import "~@ionic/angular/css/text-transformation.css";
-@import "~@ionic/angular/css/flex-utils.css";
+// @import "~@ionic/angular/css/text-transformation.css";
+// @import "~@ionic/angular/css/flex-utils.css";
 
+/* Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Orbitron&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=M+PLUS+1p&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Aldrich&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Aldrich&family=Turret+Road&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Orbitron&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,300;0,400;1,500&family=Jura:wght@500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Varela&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Karla&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Oxygen:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu&display=swap');
+
+/* ----Custom CSS---- */
 
 .limit-size{
     max-width: 500px;
@@ -44,7 +54,7 @@
 .custom-modals{
     --height: 400px;
     --border-radius: 10px 10px 0 0;
-    align-items: flex-end;
+    align-items: flex-end; 
 }
 
 .popover{
@@ -69,4 +79,32 @@ ion-toast{
     &.error{
         --background: rgba(174, 49, 0, 0.9);
     }
+}
+
+ion-item{
+    --background: transparent;
+}
+
+p, input {
+    font-family: 'Ubuntu', sans-serif !important;
+}
+
+/* Fonts */
+h3, ion-card-title{
+    font-family: 'Jura', sans-serif;
+    // text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 600;
+}
+ion-label, ion-button{
+    font-family: 'Karla', sans-serif !important;
+}
+    ion-button{
+    // font-weight: 500;
+    letter-spacing: 1px;
+    font-size: 17px !important;
+}
+  
+.md ion-card ion-label{
+font-size: 18px !important;
 }

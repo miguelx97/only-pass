@@ -10,7 +10,7 @@
     <ion-slides #loginSlide class="mainSlide">
       <ion-slide>
         <ion-card class="card">
-          <ion-card-title class="ion-text-center">{{'signin-title' | translate}}</ion-card-title>
+          <ion-card-title>{{'signin-title' | translate}}</ion-card-title>
           <form  #loginForm="ngForm" (ngSubmit)="login(loginForm.value)">
             <ion-item>
               <ion-label position="stacked">{{'usuario' | translate}}<ion-text color="primary">*</ion-text></ion-label>
@@ -21,7 +21,7 @@
               <ion-input type="password" name="password" (keyup.enter)="login(loginForm.value)" placeholder="··········" ngModel minlength="6" maxlength="30" required></ion-input>
             </ion-item>
             <div class="buttons">
-              <ion-button type="submit" expand="block">{{'signin-title' | translate}}</ion-button><!-- [disabled]="loginForm.invalid"-->
+              <ion-button type="submit" expand="block">{{'signin-btn' | translate}}</ion-button><!-- [disabled]="loginForm.invalid"-->
               <ion-button (click)="showRegister()" expand="block" fill="clear">{{'signup-title' | translate}}</ion-button>
             </div>
           </form>
@@ -30,7 +30,7 @@
 
       <ion-slide>
         <ion-card class="card">
-          <ion-card-title class="ion-text-center">{{'signup-title' | translate}}</ion-card-title>
+          <ion-card-title>{{'signup-title' | translate}}</ion-card-title>
           <form  #registerForm="ngForm" (ngSubmit)="register(registerForm.value)">
             <ion-item>
               <ion-label position="stacked">{{'usuario' | translate}} <req></req></ion-label>
@@ -45,7 +45,7 @@
               <ion-input type="password" name="password2" (keyup.enter)="register(registerForm.value)" placeholder="··········" ngModel minlength="6" maxlength="30" required></ion-input>
             </ion-item>
             <div class="buttons">
-              <ion-button type="submit" [disabled]="registerForm.invalid" expand="block">Aceptar</ion-button>
+              <ion-button type="submit" [disabled]="registerForm.invalid" expand="block">{{'signup-btn' | translate}}</ion-button>
               <ion-button (click)="showLogin()" expand="block" fill="clear">{{'signin-title' | translate}}</ion-button>
             </div>
           </form>
