@@ -13,7 +13,7 @@ export class BtnShowCredentialManagerComponent {
   constructor(
     private modalSvc: ModalService) { }
 
-  showManager = () => this.modalSvc.showManager();
+  showManager = () => this.modalSvc.showCredentialsManager();
   
 
 }

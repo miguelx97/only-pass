@@ -8,7 +8,7 @@ import { SettingsService } from './services/settings.service';
 })
 export class AppComponent {
   constructor(private settingsSvc:SettingsService) {
-    this.settingsSvc.setLanguage();
-    this.settingsSvc.setTheme();
+    this.settingsSvc.applyLanguage();
+    this.settingsSvc.applyTheme();
   }
 }

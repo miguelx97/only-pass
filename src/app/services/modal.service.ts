@@ -10,7 +10,7 @@ export class ModalService {
 
   constructor(private modalCtrl: ModalController) { }
 
-  async showManager(credential?:Credential, mode?:Mode):Promise<HTMLIonModalElement>{    
+  async showCredentialsManager(credential?:Credential, mode?:Mode):Promise<HTMLIonModalElement>{    
     const modal = await this.modalCtrl.create({
       component: CredentialManagerComponent,
       componentProps: {
@@ -25,6 +25,17 @@ export class ModalService {
     //   console.log(data);
     //   //custom code
     // });
+    return modal;
+  }
+
+  async showCommonModal(component:any, componentProps?:any):Promise<HTMLIonModalElement>{    
+    const modal = await this.modalCtrl.create({
+      component, componentProps,
+      showBackdrop: true,
+      mode:	"ios",
+      cssClass: 'custom-modals',
+    });
+    await modal.present();
     return modal;
   }
 }

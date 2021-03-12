@@ -20,19 +20,13 @@
 // @import "~@ionic/angular/css/flex-utils.css";
 
 /* Fonts */
-@import url('https://fonts.googleapis.com/css2?family=Orbitron&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=M+PLUS+1p&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Aldrich&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Aldrich&family=Turret+Road&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Orbitron&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,300;0,400;1,500&family=Jura:wght@500;600;700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Varela&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Karla&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Oxygen:wght@300&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Ubuntu&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono&family=Jura&family=Karla&family=Ubuntu:wght@300;400&display=swap');
+// font-family: 'Jura', sans-serif;             //  Titles
+// font-family: 'Karla', sans-serif;            //  Labels y Buttons
+// font-family: 'Ubuntu', sans-serif;           //  Inputs y p
+// font-family: 'IBM Plex Mono', monospace;     //  Contraseñas
+
+
 
 /* ----Custom CSS---- */
 
@@ -96,10 +90,12 @@ h3, ion-card-title{
     letter-spacing: 1px;
     font-weight: 600;
 }
-ion-label, ion-button{
-    font-family: 'Karla', sans-serif !important;
+ion-label{
+    font-family: 'Ubuntu', sans-serif !important;
+    font-weight: 300;
 }
-    ion-button{
+ion-button{
+    font-family: 'Karla', sans-serif !important;
     // font-weight: 500;
     letter-spacing: 1px;
     font-size: 17px !important;

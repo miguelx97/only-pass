@@ -58,7 +58,7 @@ export class CredentialSettingsPopoverComponent {
     this.dismiss(Option.Update);
   }
 
-  showManager = (credential:Credential) => this.modalSvc.showManager(credential, Mode.Edit);
+  showManager = (credential:Credential) => this.modalSvc.showCredentialsManager(credential, Mode.Edit);
 }
 
 export enum Option{

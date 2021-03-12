@@ -18,17 +18,19 @@
       <ion-card-content>
         <ion-list>
           <ion-item>
+            <ion-icon name="language-outline" slot="start"></ion-icon>
             <ion-label>{{'idioma' | translate}}</ion-label>
-            <ion-select interface="popover" value="language">
-              <ion-select-option value="en">{{'es' | translate}}</ion-select-option>
-              <ion-select-option value="es">{{'en' | translate}}</ion-select-option>
+            <ion-select interface="popover" value="language" (ionChange)="selLang($event.detail.value)">
+              <ion-select-option value="es">{{'es' | translate}}</ion-select-option>
+              <ion-select-option value="en">{{'en' | translate}}</ion-select-option>
             </ion-select>
           </ion-item>
           <ion-item>
+            <ion-icon name="brush-outline" slot="start"></ion-icon>
             <ion-label>{{'tema' | translate}}</ion-label>
-            <ion-select interface="popover" value="order">
-              <ion-select-option value="alf">{{'claro' | translate}}</ion-select-option>
-              <ion-select-option value="upt">{{'oscuro' | translate}}</ion-select-option>
+            <ion-select interface="popover" value="order" (ionChange)="selTheme($event.detail.value)">
+              <ion-select-option value="light">{{'claro' | translate}}</ion-select-option>
+              <ion-select-option value="dark">{{'oscuro' | translate}}</ion-select-option>
             </ion-select>
           </ion-item>
         </ion-list>
@@ -42,10 +44,12 @@
       </ion-card-header>
       <ion-card-content>
         <ion-list>
-          <ion-item detail>
-            <ion-label>{{'sobre-seguridad' | translate}}</ion-label>
+          <ion-item detail lines="full">
+            <ion-icon name="key-outline" slot="start"></ion-icon>
+            <ion-label>{{'sobre-app' | translate}}</ion-label>
           </ion-item>
-          <ion-item detail>
+          <ion-item detail (click)="goAboutMe()" lines="full">
+            <ion-icon name="person-outline" slot="start"></ion-icon>
             <ion-label>{{'sobre-programador' | translate}}</ion-label>
           </ion-item>
         </ion-list>
@@ -59,10 +63,12 @@
       </ion-card-header>
       <ion-card-content>
         <ion-list>
-          <ion-item detail>
+          <ion-item detail lines="full">
+            <ion-icon name="lock-closed-outline" slot="start"></ion-icon>
             <ion-label>{{'cambiar-pass' | translate}}</ion-label>
           </ion-item>
-          <ion-item detail>
+          <ion-item detail lines="full">
+            <ion-icon name="trash-outline" slot="start"></ion-icon>
             <ion-label>{{'borrar-cuenta' | translate}}</ion-label>
           </ion-item>
         </ion-list>

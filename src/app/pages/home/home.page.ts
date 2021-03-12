@@ -108,7 +108,7 @@ export class HomePage implements OnInit{
     return await popover.present();
   }
 
-  showManager = (credential:Credential) => this.modalSvc.showManager(credential);
+  showManager = (credential:Credential) => this.modalSvc.showCredentialsManager(credential);
 
   goSettings(){
     /*
