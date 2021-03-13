@@ -1,0 +1,26 @@
+<h3 class="ion-text-center">{{'cambiar-pass' | translate}}</h3>
+<ion-content class="modal">
+  <form  #changePassForm="ngForm" (ngSubmit)="changePass(changePassForm)">
+    <ion-item>
+      <ion-label position="stacked">{{'oldPw' | translate}}</ion-label>
+      <ion-input type="password" name="oldPw" placeholder="··········" ngModel minlength="6" maxlength="30" required></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="stacked">{{'newPw' | translate}}</ion-label>
+      <ion-input type="password" name="newPw" placeholder="··········" ngModel minlength="6" maxlength="30" required></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="stacked">{{'pw2' | translate}}</ion-label>
+      <ion-input type="password" name="newPw2" (keyup.enter)="changePass(changePassForm)" placeholder="··········" ngModel minlength="6" maxlength="30" required></ion-input>
+    </ion-item>
+    <div style="margin: 10px 15px;" [hidden]="!invalidForm">
+      <ion-text color="danger">
+        <small>{{'err.save-cred' | translate}}</small>
+      </ion-text>
+    </div>
+    <ion-buttons>
+      <ion-button (click)="dismiss()" expand="block">{{'cancelar' | translate}}</ion-button><!-- [disabled]="loginForm.invalid"-->
+      <ion-button type="submit">{{'actualizar' | translate}}</ion-button>
+    </ion-buttons>
+  </form>
+</ion-content>

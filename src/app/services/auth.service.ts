@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { ErrorSimple } from '../model/errors';
 import { UiService } from './ui.service';
+import firebase from 'firebase/app';
 
 @Injectable({
   providedIn: 'root'
@@ -38,6 +39,35 @@ export class AuthService {
     }
 
     throw new ErrorSimple('invalid-username','el username no cumple la regex');
+  }
+
+  async changePassword(oldPassword:string, newPassword:string){
+    try{
+      var user = await this.afAuth.currentUser;
+      const credentials = firebase.auth.EmailAuthProvider.credential(user.email, oldPassword);
+      const userAuth = await user.reauthenticateWithCredential(credentials);
+    } catch(e) {
+      this.uiSvc.error(e);      
+    }
+  }
+
+  async reauthenticate(oldPassword:string){
+      var user = await this.afAuth.currentUser;
+      const credentials = firebase.auth.EmailAuthProvider.credential(user.email, oldPassword);
+      await user.reauthenticateWithCredential(credentials);
+      return user;
+  }
+
+  
+  async updatePassword(oldPassword:string, newPassword:string): Promise<boolean> {
+      const user = await this.reauthenticate(oldPassword);
+      await user.updatePassword(newPassword);
+      return this.uiSvc.success();
+  }
+
+  async deleteAccount(){
+    var user = await this.afAuth.currentUser;
+    await user.delete();
   }
 
 }

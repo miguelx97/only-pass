@@ -27,7 +27,7 @@ export class UiService {
     if (typeof error === "string") message = error;
     else message = error.code;
 
-    this.utils.trans(message, 'err').then((traducido: string)=> {
+    this.utils.trans(message, null, 'err').then((traducido: string)=> {
       if(traducido) this.toast(traducido, duration, 'error');  
     });
 
@@ -49,7 +49,8 @@ export class UiService {
   }
 
   private loadingDialog: HTMLIonLoadingElement;
-  async showLoading(msg = 'Un segundo...') {
+  async showLoading(msg = 'un-segundo') {
+    msg = await this.utils.trans(msg);
     this.loadingDialog = await this.loadingController.create({
       message: msg,
       duration: 5000
@@ -61,15 +62,17 @@ export class UiService {
     this.loadingDialog.dismiss();   
   }
   
-  async confirm(header:string, message?:string, confirmBtn:string = 'Aceptar', params?:any):Promise<boolean> {
+  async confirm(header:string, message?:string, confirmBtn:string = 'aceptar', params?:any):Promise<boolean> {
     header = await this.utils.trans(header);
     message = await this.utils.trans(message, params);
+    confirmBtn = await this.utils.trans(confirmBtn);
+    const cancelmBtn = await this.utils.trans('cancelar');
     return new Promise(async resolve => {
       const alert = await this.alert.create({
         header, message,
         buttons: [
           {
-            text: 'Cancelar',
+            text: cancelmBtn,
             role: 'cancel',
             cssClass: 'secondary',
             handler: () => {

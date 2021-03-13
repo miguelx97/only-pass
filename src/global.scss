@@ -45,6 +45,10 @@
     }
 }
 
+.pointer{
+    cursor: pointer;
+}
+
 .custom-modals{
     --height: 400px;
     --border-radius: 10px 10px 0 0;
@@ -103,4 +107,28 @@ ion-button{
   
 .md ion-card ion-label{
 font-size: 18px !important;
+}
+
+.modal form{
+    // padding: 0 30px;
+
+    ion-item{
+        --padding-start: 0;
+        padding-left: 0;
+        // --highlight-background: transparent;
+
+        ion-label{
+            padding-left: 20px !important;
+            color: var(--ion-color-dark)
+        }
+        ion-input{        
+            --padding-start: 20px !important;
+        }
+    }
+
+    ion-buttons{
+        position: fixed;
+        bottom: 10px;
+        right: 10px;
+    }
 }

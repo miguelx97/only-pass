@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
+import { first } from 'rxjs/operators';
 import { Credential } from '../model/credential';
 import { AuthService } from './auth.service';
 import { UiService } from './ui.service';
@@ -21,16 +22,17 @@ export class FirestoreCredentialsService {
     this.collection = this.firestore.collection("credentials");
   }
 
+  allPasswords:Observable<Credential[]>
   getAll():Observable<Credential[]>{
     try {
-      const queryCollection: AngularFirestoreCollection<Credential> = this.firestore.collection("credentials"
-      , ref => ref.where('ownerId', '==', AuthService.UID).orderBy('title', 'asc')
-      );
-
-      return queryCollection.valueChanges({ idField: 'id'})
-      // .pipe(map(lCredentials => {
-      //   return lCredentials.map(cred => {return Credential.copy(cred);})
-      // }))
+      if(!this.allPasswords){
+        console.log("cargando allPasswords");        
+        const queryCollection: AngularFirestoreCollection<Credential> = this.firestore.collection("credentials"
+        , ref => ref.where('ownerId', '==', AuthService.UID).orderBy('title', 'asc')
+        );
+        this.allPasswords = queryCollection.valueChanges({ idField: 'id'})
+      }
+      return this.allPasswords;
     } catch(e) {
       this.uiSvc.error(e);
     }
@@ -82,6 +84,13 @@ export class FirestoreCredentialsService {
     } catch(ex) {
       console.log("Firebase ya iniciado");      
     }
+  }
+
+  async deleteAll(){
+    const lCredentials:Credential[] = await this.getAll().pipe(first()).toPromise();
+    await Promise.all(lCredentials.map(async credential => {
+      await this.collection.doc(credential.id).delete();
+    }));
   }
   
 }
