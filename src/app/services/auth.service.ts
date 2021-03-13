@@ -70,4 +70,7 @@ export class AuthService {
     await user.delete();
   }
 
+  async logout(){
+    await this.afAuth.signOut();
+  }
 }

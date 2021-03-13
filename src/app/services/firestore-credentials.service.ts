@@ -25,8 +25,7 @@ export class FirestoreCredentialsService {
   allPasswords:Observable<Credential[]>
   getAll():Observable<Credential[]>{
     try {
-      if(!this.allPasswords){
-        console.log("cargando allPasswords");        
+      if(!this.allPasswords){       
         const queryCollection: AngularFirestoreCollection<Credential> = this.firestore.collection("credentials"
         , ref => ref.where('ownerId', '==', AuthService.UID).orderBy('title', 'asc')
         );

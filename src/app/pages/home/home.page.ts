@@ -3,15 +3,14 @@ import { NavigationExtras, Router } from '@angular/router';
 import { PopoverController } from '@ionic/angular';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { Mode } from 'src/app/components/credential-manager/credential-manager.component';
 import { CredentialSettingsPopoverComponent, Option } from 'src/app/components/credential-settings-popover/credential-settings-popover.component';
 import { Credential } from 'src/app/model/credential';
+import { BackgroundService } from 'src/app/services/background.service';
 import { CryptingService } from 'src/app/services/crypting.service';
 import { FirestoreCredentialsService } from 'src/app/services/firestore-credentials.service';
 import { LocalStoragedCredentialsService } from 'src/app/services/local-storaged-credentials.service';
 import { ModalService } from 'src/app/services/modal.service';
 import { UiService } from 'src/app/services/ui.service';
-import { UtilsService } from 'src/app/services/utils.service';
 import { environment } from 'src/environments/environment';
 
 @Component({
@@ -25,39 +24,20 @@ export class HomePage implements OnInit{
   lFilteredCredentials:Observable<Credential[]>
 
   constructor(
-    private router: Router
-    , private popoverController: PopoverController
+    private popoverController: PopoverController
     , private modalSvc: ModalService
     , private firestoreCredSvc:FirestoreCredentialsService
     , private lsCredentialsSvc:LocalStoragedCredentialsService
     , private uiSvc:UiService
     , private cryptingSvc:CryptingService
+    , private backgroundSvc:BackgroundService
   ) {}
 
   async ngOnInit(){
-    // this.cryptingSvc.setSecretKey("hola");
-    // this.lCredentials = [];
-
-    ////
-    // let credential:Credential;
-    // credential = new Credential();
-    // credential.build("1", "spotify", "miguelmartin97@hotmail.com", this.cryptingSvc.encryptData("12345"), "spotify.com");
-    // this.firestoreCredSvc.save(credential);
-    // credential = new Credential();
-    // credential.build("1", "spotify2", "miguelmartin97@hotmail2.com", this.cryptingSvc.encryptData("123452"), "spotify2.com");
-    // this.firestoreCredSvc.save(credential);
-    // for(let i=1; i <= 10; i++){
-    //   credential = new Credential();
-    //   credential.build(i.toString(), "Nombre "+i, "mmcmmc19997@gmail.com"+i, this.cryptingSvc.encryptData("miContrassseña"+i), "www.amazon"+i+".com");
-    
-    //   this.firestoreCredSvc.save(credential);
-    //   console.log("guardando", credential);
-    // }
-    ////
-
     this.lCredentials = this.firestoreCredSvc.getAll();
     this.lFilteredCredentials = this.lCredentials;
     this.syncingLocalPasswords();
+    this.backgroundSvc.lockApp();
   }
 
   private async syncingLocalPasswords() {

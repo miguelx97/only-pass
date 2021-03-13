@@ -33,6 +33,10 @@ export class CryptingService {
     CryptingService.encryptSecretKey = encryptSecretKey;
   }
 
+  static deleteSecretKey(){
+    CryptingService.encryptSecretKey = undefined;
+  }
+
   static isSecretKeySetted():boolean{
     return !!CryptingService.encryptSecretKey;
   }

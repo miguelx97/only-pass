@@ -1,0 +1,24 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/menu"></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{'sobre-app' | translate}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="limit-size">
+    <div class="ion-text-center">
+      <ion-icon name="key-outline"></ion-icon>
+    </div>
+    <p>
+      OnlyPass está hecho de tal forma que todas <b>tus contraseñas se encriptan y decriptan solo en tu dispositivo</b> con el sistema de cifrado AES-256, utilizando tu contraseña principal.<br>
+    Se envían a la base de datos de OnlyPass como un código alfanumérico solo desdifrable con tu contraseña.
+    </p>
+    <p>
+      Respecto a las contraseñas que guardas antes de iniciar sesión, se almacenan en tu dispositivo, encriptadas con una clave genérica de la aplicación.<br>
+    Estas contraseñas son más fáciles de descifrar en caso de robo o hackeo del dispositivo, aunque todas ellas, se sincronizan, encriptan con tu clave principal y borran del dispositivo en el momento en el que inicias sesión.
+    </p>
+  </div>
+</ion-content>
