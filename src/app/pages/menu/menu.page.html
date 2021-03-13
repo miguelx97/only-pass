@@ -20,7 +20,7 @@
           <ion-item>
             <ion-icon name="language-outline" slot="start"></ion-icon>
             <ion-label>{{'idioma' | translate}}</ion-label>
-            <ion-select interface="popover" value="language" (ionChange)="selLang($event.detail.value)">
+            <ion-select interface="popover" value="language" (ionChange)="selLang($event)">
               <ion-select-option value="es">{{'es' | translate}}</ion-select-option>
               <ion-select-option value="en">{{'en' | translate}}</ion-select-option>
             </ion-select>
@@ -28,7 +28,7 @@
           <ion-item>
             <ion-icon name="brush-outline" slot="start"></ion-icon>
             <ion-label>{{'tema' | translate}}</ion-label>
-            <ion-select interface="popover" value="order" (ionChange)="selTheme($event.detail.value)">
+            <ion-select interface="popover" value="order" (ionChange)="selTheme($event)">
               <ion-select-option value="light">{{'claro' | translate}}</ion-select-option>
               <ion-select-option value="dark">{{'oscuro' | translate}}</ion-select-option>
             </ion-select>

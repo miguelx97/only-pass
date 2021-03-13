@@ -61,9 +61,9 @@ export class CredentialManagerComponent implements OnInit {
 
   titulo(){
     switch(this.mode){
-      case Mode.New: return 'Añadir credenciales'
-      case Mode.View: return 'Tus credenciales'
-      case Mode.Edit: return 'Actualizando credenciales'
+      case Mode.New: return 'add-credenciales'
+      case Mode.View: return 'tus-credenciales'
+      case Mode.Edit: return 'actualizar-credenciales'
     }
   }
 

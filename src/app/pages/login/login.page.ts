@@ -6,6 +6,7 @@ import { AuthService } from 'src/app/services/auth.service';
 import { CryptingService } from 'src/app/services/crypting.service';
 import { LocalStoragedCredentialsService } from 'src/app/services/local-storaged-credentials.service';
 import { UiService } from 'src/app/services/ui.service';
+import { UtilsService } from 'src/app/services/utils.service';
 
 @Component({
   selector: 'app-login',
@@ -20,6 +21,7 @@ export class LoginPage {
     , private authSvc:AuthService
     , private uiSvc:UiService
     , private router:Router
+    , private utils:UtilsService
     ) { }
 
   noPwSyncParam:any
@@ -30,8 +32,9 @@ export class LoginPage {
 
   async syncMsg(){
     const numStoragedCredential = await this.lsCredentialsSvc.numStoragedCredential();
-    if(numStoragedCredential === 1) this.noPwSyncParam = {numCredentials: "1 contraseña"}
-    if(numStoragedCredential > 1) this.noPwSyncParam = {numCredentials: numStoragedCredential + " contraseñas"}
+    const password:string = (await this.utils.trans('pw')).toLowerCase();
+    if(numStoragedCredential === 1) this.noPwSyncParam = {numCredentials: `1 ${password}`}
+    if(numStoragedCredential > 1) this.noPwSyncParam = {numCredentials: numStoragedCredential + `${password}s`}
   }
 
   // slideOpts = {
@@ -41,7 +44,7 @@ export class LoginPage {
 
   async login(loginValues:any){
     try {
-      loginValues = {username:'miguel', password:'mmmmmm'}
+      // loginValues = {username:'miguel', password:'mmmmmm'}
       await this.authSvc.login(loginValues.username, loginValues.password);
       this.authSuccess(loginValues.password);   
     } catch(e) {

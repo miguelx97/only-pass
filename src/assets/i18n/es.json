@@ -1,6 +1,6 @@
 {
     "searchbar-placeholder":"¿Qué buscas?"
-    , "signin-title":"Iniciar sesión"
+    , "signin-title":"- Only Pass -"
     , "signin-btn":"Iniciar sesión"
     , "signup-title":"Crear cuenta"
     , "signup-btn":"Aceptar"
@@ -11,13 +11,16 @@
     , "usuario":"Usuario"
     , "pw":"Contraseña"
     , "pw2":"Repite la contraseña"
+    , "usernamePh":"minombre97"
     , "no-pws-sync":"Tienes {{numCredentials}} sin sincronizar"
     , "eliminar-conf":"Estás seguro de que quieres borrar {{title}}"
     , "titulo":"Título"
-    , "username-email":"Usuario o Correo"
+    , "username-email":"Usuario / Correo"
     , "web":"Página web"
     , "add-cred-btn":"Añadir contraseña"
+    , "copiar-pw":"Copiar contraseña"
     , "pw-copiada":"Contraseña copiada"
+    , "ir-web":"Ir a la web"
     , "menu":"Menú"
     , "ajustes":"Ajustes"
     , "idioma":"Idioma"
@@ -32,6 +35,9 @@
     , "perfil":"Mi perfil"
     , "cambiar-pass":"Cambiar contraseña"
     , "borrar-cuenta":"Borrar cuenta"
+    , "add-credenciales":"Añadir credenciales"
+    , "tus-credenciales":"Tus credenciales"
+    , "actualizar-credenciales":"Actualizando credenciales"
     , "tituloPh":"Título de credenciales"
     , "correoPh":"ejemplo@email.com"
     , "urlPh":"paginaweb.com"
@@ -42,14 +48,6 @@
     , "eliminar-cuenta-msg":"Al eliminar su cuenta, tanto su usuario como sus contraseñas serán borradas y no podrán ser recuperadas.\n¿Estás seguro de que quieres hacerlo?"
     , "eliminando-cuenta":"Eliminando cuenta... :("
     , "":""
-    
-    , "info": {
-        "no-pws-sync":"Tienes contraseñas sin sincronizar"
-        , "":""
-        , "":""
-        , "":""
-
-    }
     
     , "err": {
         "pw-no-match":"Las contraseñas no coinciden"
@@ -62,8 +60,6 @@
         , "auth/wrong-password":"Contraseña incorrecta"
         , "auth/email-already-in-use":"Este usuario ya existe"
         , "":""
-        , "":""
-        , "":""
     }
     
     , "succ": {
@@ -75,11 +71,6 @@
         , "cred-saved":"Contraseña guardada"
         , "pw-sync":"Contraseñas sincronizadas"
         , "pw-cambiada":"Has actualizado tu contraseña"
-        , "":""
-    }
-    
-    , "": {
-        "":""
         , "":""
     }
 }

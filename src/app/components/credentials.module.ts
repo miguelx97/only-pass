@@ -5,11 +5,12 @@ import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 import { BtnShowCredentialManagerComponent } from './btn-show-credential-manager/btn-show-credential-manager.component';
 import { TranslateModule } from '@ngx-translate/core';
+import { CredentialSettingsPopoverComponent } from './credential-settings-popover/credential-settings-popover.component';
 
 
 
 @NgModule({
-  declarations: [CredentialManagerComponent, BtnShowCredentialManagerComponent],
+  declarations: [CredentialManagerComponent, BtnShowCredentialManagerComponent, CredentialSettingsPopoverComponent],
   imports: [
     CommonModule,
     FormsModule,

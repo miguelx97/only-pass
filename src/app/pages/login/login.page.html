@@ -7,18 +7,18 @@
     <ion-slides #loginSlide class="mainSlide">
       <ion-slide>
         <ion-card class="card">
-          <ion-card-title>{{'signin-title' | translate}}</ion-card-title>
+          <ion-card-title id="app">{{'signin-title' | translate}}</ion-card-title>
           <form  #loginForm="ngForm" (ngSubmit)="login(loginForm.value)">
             <ion-item>
               <ion-label position="stacked">{{'usuario' | translate}}</ion-label>
-              <ion-input type="text" name="username" placeholder="minombre95" ngModel minlength="3" maxlength="30" required></ion-input>
+              <ion-input type="text" name="username" placeholder="{{'usernamePh' | translate}}" ngModel minlength="3" maxlength="30" required></ion-input>
             </ion-item>
             <ion-item>
               <ion-label position="stacked">{{'pw' | translate}}</ion-label>
               <ion-input type="password" name="password" (keyup.enter)="login(loginForm.value)" placeholder="··········" ngModel minlength="6" maxlength="30" required></ion-input>
             </ion-item>
             <div class="buttons">
-              <ion-button type="submit" expand="block">{{'signin-btn' | translate}}</ion-button><!-- [disabled]="loginForm.invalid"-->
+              <ion-button type="submit" expand="block" [disabled]="loginForm.invalid">{{'signin-btn' | translate}}</ion-button><!-- [disabled]="loginForm.invalid"-->
               <ion-button (click)="showRegister()" expand="block" fill="clear">{{'signup-title' | translate}}</ion-button>
             </div>
           </form>
@@ -43,7 +43,7 @@
             </ion-item>
             <div class="buttons">
               <ion-button type="submit" [disabled]="registerForm.invalid" expand="block">{{'signup-btn' | translate}}</ion-button>
-              <ion-button (click)="showLogin()" expand="block" fill="clear">{{'signin-title' | translate}}</ion-button>
+              <ion-button (click)="showLogin()" expand="block" fill="clear">{{'signin-btn' | translate}}</ion-button>
             </div>
           </form>
         </ion-card>

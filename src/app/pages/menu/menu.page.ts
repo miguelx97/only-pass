@@ -24,11 +24,13 @@ export class MenuPage {
     , private router:Router
   ) { }
 
-  selLang(lang:string){
+  selLang(event:any){
+    const lang = event.target.value;
     this.settingsSvc.saveLanguage(lang);
   }
   
-  selTheme(theme:string){
+  selTheme(event:any){
+    const theme = event.target.value;
     this.settingsSvc.saveTheme(theme);
   }
 

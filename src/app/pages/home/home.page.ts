@@ -65,8 +65,8 @@ export class HomePage implements OnInit{
     credential.options = {show}
   }
 
-  onSearch(filter:string){
-    filter = filter.toLowerCase();
+  onSearch(event:any){
+    const filter = event.target.value.toLowerCase();
     this.lFilteredCredentials = this.lCredentials.pipe(
       map(lCred => {
         return lCred.filter(cred => cred.title.toLowerCase().includes(filter) || cred.url?.toLowerCase().includes(filter))

@@ -10,7 +10,7 @@
         animated 
         showCancelButton="focus" 
         [placeholder]="'searchbar-placeholder' | translate" 
-        (ionChange)="onSearch($event.detail.value)"
+        (ionChange)="onSearch($event)"
         [debounce]="300"
         style="padding:3px 7px;"></ion-searchbar>
       </div>
