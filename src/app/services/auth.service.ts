@@ -20,14 +20,14 @@ export class AuthService {
       const mail = this.buildMail(username);
       const { user } = await this.afAuth.createUserWithEmailAndPassword(mail, password);
       AuthService.UID = user.uid;
-      return this.uiSvc.success('register', {name: username.charAt(0).toUpperCase() + username.slice(1)}, 1500);
+      return this.uiSvc.success('register', {name: username.charAt(0).toUpperCase() + username.slice(1)}, 500);
   }
 
   async login(username:string, password:string): Promise<boolean>  {
       const mail = this.buildMail(username);      
       const { user } = await this.afAuth.signInWithEmailAndPassword(mail, password);
       AuthService.UID = user.uid;
-      return this.uiSvc.success('login', {name: username.charAt(0).toUpperCase() + username.slice(1)}, 1500);
+      return this.uiSvc.success('login', {name: username.charAt(0).toUpperCase() + username.slice(1)}, 500);
   }
 
   buildMail(username:string):string{
