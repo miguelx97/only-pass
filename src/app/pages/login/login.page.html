@@ -8,7 +8,7 @@
       <ion-slide>
         <ion-card class="card">
           <ion-card-title id="app">{{'signin-title' | translate}}</ion-card-title>
-          <form  #loginForm="ngForm" (ngSubmit)="login(loginForm.value)">
+          <form  #loginForm="ngForm" (ngSubmit)="login(loginForm)">
             <ion-item>
               <ion-label position="stacked">{{'usuario' | translate}}</ion-label>
               <ion-input type="text" name="username" placeholder="{{'usernamePh' | translate}}" ngModel minlength="3" maxlength="30" required autocomplete="off"></ion-input>
@@ -16,7 +16,7 @@
             <ion-item>
               <ion-label position="stacked">{{'pw' | translate}}</ion-label>
               <password-wrapper>
-                <ion-input type="password" name="password" (keyup.enter)="login(loginForm.value)" placeholder="··········" ngModel minlength="6" maxlength="30" required autocomplete="off"></ion-input>
+                <ion-input type="password" name="password" (keyup.enter)="login(loginForm)" placeholder="··········" ngModel minlength="6" maxlength="30" required autocomplete="off"></ion-input>
               </password-wrapper>
             </ion-item>
             <div class="buttons">
@@ -30,7 +30,7 @@
       <ion-slide>
         <ion-card class="card">
           <ion-card-title>{{'signup-title' | translate}}</ion-card-title>
-          <form  #registerForm="ngForm" (ngSubmit)="register(registerForm.value)">
+          <form  #registerForm="ngForm" (ngSubmit)="register(registerForm)">
             <ion-item>
               <ion-label position="stacked">{{'usuario' | translate}}</ion-label>
               <ion-input type="text" name="username" placeholder="minombre95" ngModel minlength="3" maxlength="30" required></ion-input>
@@ -41,7 +41,7 @@
             </ion-item>
             <ion-item>
               <ion-label position="stacked">{{'pw2' | translate}}</ion-label>
-              <ion-input type="password" name="password2" (keyup.enter)="register(registerForm.value)" placeholder="··········" ngModel minlength="6" maxlength="30" required></ion-input>
+              <ion-input type="password" name="password2" (keyup.enter)="register(registerForm)" placeholder="··········" ngModel minlength="6" maxlength="30" required></ion-input>
             </ion-item>
             <div class="buttons">
               <ion-button type="submit" [disabled]="registerForm.invalid" expand="block">{{'signup-btn' | translate}}</ion-button>

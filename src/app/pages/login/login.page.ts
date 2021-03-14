@@ -1,4 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { IonSlides } from '@ionic/angular';
 import { AuthService } from 'src/app/services/auth.service';
@@ -41,21 +42,25 @@ export class LoginPage {
   //   allowSlidePrev: false
   // };
 
-  async login(loginValues:any){
+  async login(loginForm:NgForm){
     try {
       // loginValues = {username:'miguel', password:'mmmmmm'}
-      await this.authSvc.login(loginValues.username, loginValues.password);
-      this.authSuccess(loginValues.password);   
+      const {username, password} = loginForm.value;
+      await this.authSvc.login(username, password);
+      loginForm.reset();
+      this.authSuccess(password);   
     } catch(e) {
       this.uiSvc.error(e);
     }
   }
 
-  async register(registerValues:any){    
+  async register(registerForm:NgForm){    
     try{
-      if(registerValues.password !== registerValues.password2) this.uiSvc.error('pw-no-match');
-      await this.authSvc.register(registerValues.username, registerValues.password);
-      this.authSuccess(registerValues.password);   
+      const {username, password, password2} = registerForm.value;
+      if(password !== password2) this.uiSvc.error('pw-no-match');
+      await this.authSvc.register(username, password);
+      registerForm.reset();
+      this.authSuccess(password);   
     } catch(e) {
       this.uiSvc.error(e);
     }
