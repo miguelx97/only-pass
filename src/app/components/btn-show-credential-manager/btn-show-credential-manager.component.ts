@@ -1,7 +1,6 @@
-import { Component } from '@angular/core';
-import { ModalController } from '@ionic/angular';
+import { Component, OnInit } from '@angular/core';
 import { ModalService } from 'src/app/services/modal.service';
-import { CredentialManagerComponent } from '../credential-manager/credential-manager.component';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-btn-show-credential-manager',
@@ -10,10 +9,10 @@ import { CredentialManagerComponent } from '../credential-manager/credential-man
 })
 export class BtnShowCredentialManagerComponent {
 
-  constructor(
-    private modalSvc: ModalService) { }
+  prod:boolean
+  constructor(private modalSvc: ModalService) {
+    this.prod = environment.production;
+  }
 
   showManager = () => this.modalSvc.showCredentialsManager();
-  
-
 }

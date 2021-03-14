@@ -1,7 +1,6 @@
 import { Component, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { IonSlides } from '@ionic/angular';
-import { User } from 'src/app/model/user';
 import { AuthService } from 'src/app/services/auth.service';
 import { CryptingService } from 'src/app/services/crypting.service';
 import { LocalStoragedCredentialsService } from 'src/app/services/local-storaged-credentials.service';

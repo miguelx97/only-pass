@@ -1,11 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { NavigationExtras, Router } from '@angular/router';
 import { PopoverController } from '@ionic/angular';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { CredentialSettingsPopoverComponent, Option } from 'src/app/components/credential-settings-popover/credential-settings-popover.component';
 import { Credential } from 'src/app/model/credential';
-import { BackgroundService } from 'src/app/services/background.service';
+// import { BackgroundService } from 'src/app/services/background.service';
 import { CryptingService } from 'src/app/services/crypting.service';
 import { FirestoreCredentialsService } from 'src/app/services/firestore-credentials.service';
 import { LocalStoragedCredentialsService } from 'src/app/services/local-storaged-credentials.service';
@@ -30,14 +29,14 @@ export class HomePage implements OnInit{
     , private lsCredentialsSvc:LocalStoragedCredentialsService
     , private uiSvc:UiService
     , private cryptingSvc:CryptingService
-    , private backgroundSvc:BackgroundService
+    // , private backgroundSvc:BackgroundService
   ) {}
 
   async ngOnInit(){
     this.lCredentials = this.firestoreCredSvc.getAll();
     this.lFilteredCredentials = this.lCredentials;
     this.syncingLocalPasswords();
-    this.backgroundSvc.lockApp();
+    // this.backgroundSvc.lockApp();
   }
 
   private async syncingLocalPasswords() {

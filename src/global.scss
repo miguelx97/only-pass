@@ -132,3 +132,7 @@ font-size: 18px !important;
         right: 10px;
     }
 }
+
+body.keyboard-is-open .keyboard-hide{
+    display: none !important;
+}

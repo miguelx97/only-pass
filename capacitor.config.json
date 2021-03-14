@@ -1,6 +1,6 @@
 {
   "appId": "com.miguelmartin.easypasswords",
-  "appName": "very simple password manager",
+  "appName": "OnlyPass",
   "bundledWebRuntime": false,
   "npmClient": "npm",
   "webDir": "www",

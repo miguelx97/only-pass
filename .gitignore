@@ -32,3 +32,5 @@ npm-debug.log*
 /enviroments
 /android
 /ios
+/resources
+/.firebase

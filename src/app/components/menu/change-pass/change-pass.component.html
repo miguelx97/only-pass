@@ -3,15 +3,21 @@
   <form  #changePassForm="ngForm" (ngSubmit)="changePass(changePassForm)">
     <ion-item>
       <ion-label position="stacked">{{'oldPw' | translate}}</ion-label>
-      <ion-input type="password" name="oldPw" placeholder="··········" ngModel minlength="6" maxlength="30" required></ion-input>
+      <password-wrapper>
+        <ion-input type="password" name="oldPw" placeholder="··········" ngModel minlength="6" maxlength="30" required></ion-input>
+      </password-wrapper>
     </ion-item>
     <ion-item>
       <ion-label position="stacked">{{'newPw' | translate}}</ion-label>
-      <ion-input type="password" name="newPw" placeholder="··········" ngModel minlength="6" maxlength="30" required></ion-input>
+      <password-wrapper>
+        <ion-input type="password" name="newPw" placeholder="··········" ngModel minlength="6" maxlength="30" required></ion-input>
+      </password-wrapper>
     </ion-item>
     <ion-item>
       <ion-label position="stacked">{{'pw2' | translate}}</ion-label>
-      <ion-input type="password" name="newPw2" (keyup.enter)="changePass(changePassForm)" placeholder="··········" ngModel minlength="6" maxlength="30" required></ion-input>
+      <password-wrapper>
+        <ion-input type="password" name="newPw2" (keyup.enter)="changePass(changePassForm)" placeholder="··········" ngModel minlength="6" maxlength="30" required></ion-input>
+      </password-wrapper>
     </ion-item>
     <div style="margin: 10px 15px;" [hidden]="!invalidForm">
       <ion-text color="danger">
