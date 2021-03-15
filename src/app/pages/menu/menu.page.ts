@@ -13,7 +13,7 @@ import { UiService } from 'src/app/services/ui.service';
   templateUrl: './menu.page.html',
   styleUrls: ['./menu.page.scss'],
 })
-export class MenuPage {
+export class MenuPage implements OnInit {
 
   constructor(
     private settingsSvc:SettingsService
@@ -23,15 +23,25 @@ export class MenuPage {
     , private firestoreCredSvc:FirestoreCredentialsService
     , private router:Router
   ) { }
+  lang = 'es';
+  settingsMap:{[key: string]: any} = {};
+  async ngOnInit() {
+    this.settingsMap = await this.settingsSvc.readSettings();
+    // debugger;
+    console.log(this.settingsMap);    
+  }
 
-  selLang(event:any){
-    const lang = event.target.value;
-    this.settingsSvc.saveLanguage(lang);
+  selLang(){
+    this.settingsSvc.saveLanguage(this.settingsMap.lang);
   }
   
-  selTheme(event:any){
-    const theme = event.target.value;
-    this.settingsSvc.saveTheme(theme);
+  selTheme(){
+    this.settingsSvc.saveTheme(this.settingsMap.theme);
+  }
+
+  setBioAccess(){
+    console.log(this.settingsMap.bioAccess);    
+    this.settingsSvc.saveBioAccess(this.settingsMap.bioAccess);
   }
 
   showAboutMe = () => this.modalSvc.showCommonModal(AboutMeComponent)
@@ -54,3 +64,6 @@ export class MenuPage {
   
 
 }
+
+
+

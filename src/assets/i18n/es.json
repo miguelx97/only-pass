@@ -49,6 +49,8 @@
     , "actualizando-pw":"Actualizando contraseña..."
     , "eliminar-cuenta-msg":"Al eliminar su cuenta, tanto su usuario como sus contraseñas serán borradas y no podrán ser recuperadas.\n¿Estás seguro de que quieres hacerlo?"
     , "eliminando-cuenta":"Eliminando cuenta... :("
+    , "habilitar-huella":"Acceso biométrico"
+    , "":""
     , "":""
     
     , "err": {

@@ -13,6 +13,7 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { AngularFireModule } from '@angular/fire';
 import { environment } from 'src/environments/environment';
 import { MenuModule } from './components/menu/menu.module';
+import { FingerprintAIO } from '@ionic-native/fingerprint-aio/ngx';
 
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -38,7 +39,10 @@ export function createTranslateLoader(http: HttpClient) {
     })
     , AngularFireModule.initializeApp(environment.firebaseConfig)
   ],
-  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
+  providers: [
+    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
+    , FingerprintAIO
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

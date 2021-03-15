@@ -1,6 +1,7 @@
 import { Component, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
+import { FingerprintAIO } from '@ionic-native/fingerprint-aio/ngx';
 import { IonSlides } from '@ionic/angular';
 import { AuthService } from 'src/app/services/auth.service';
 import { CryptingService } from 'src/app/services/crypting.service';
@@ -22,6 +23,7 @@ export class LoginPage {
     , private uiSvc:UiService
     , private router:Router
     , private utils:UtilsService
+    , public faio: FingerprintAIO
     ) { }
 
   noPwSyncParam:any
@@ -81,5 +83,22 @@ export class LoginPage {
     this.slide.lockSwipes(false);
     this.slide.slideTo(0);
     this.slide.lockSwipes(true);
+  }
+
+  async biometricAuth(){
+    try{
+      const title = await this.utils.trans('Acceso biométrico');
+      const description = await this.utils.trans('Escanea tu huella dactilar');
+      const cancelButtonTitle = await this.utils.trans('cancelar');
+  
+      const fingerprintResult = await this.faio.show({ title, description, cancelButtonTitle, disableBackup:true });
+      console.log('fingerprintResult ' + fingerprintResult);    
+      if(fingerprintResult === 'biometric_success'){
+        console.log("HOLAAAAAaa");
+      }
+    } catch(e){
+      console.log('fingerprintResultCatch ' + JSON.stringify(e));
+      this.uiSvc.error(e);
+    }
   }
 }

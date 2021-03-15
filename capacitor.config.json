@@ -1,5 +1,5 @@
 {
-  "appId": "com.miguelmartin.easypasswords",
+  "appId": "com.miguelmartin.onlypass",
   "appName": "OnlyPass",
   "bundledWebRuntime": false,
   "npmClient": "npm",

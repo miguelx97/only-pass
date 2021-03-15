@@ -20,7 +20,9 @@
               </password-wrapper>
             </ion-item>
             <div class="buttons">
-              <ion-button type="submit" expand="block" [disabled]="loginForm.invalid">{{'signin-btn' | translate}}</ion-button><!-- [disabled]="loginForm.invalid"-->
+              <ion-button type="submit" expand="block" [disabled]="loginForm.invalid">{{'signin-btn' | translate}}
+                <ion-icon name="finger-print-outline" slot="end"></ion-icon>
+              </ion-button><!-- [disabled]="loginForm.invalid"-->
               <ion-button (click)="showRegister()" expand="block" fill="clear">{{'signup-title' | translate}}</ion-button>
             </div>
           </form>
