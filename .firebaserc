@@ -1,4 +1,13 @@
 {
+  "targets": {
+    "only-pass": {
+      "hosting": {
+        "app": [
+          "only-pass"
+        ]
+      }
+    }
+  },
   "projects": {
     "default": "only-pass"
   }
