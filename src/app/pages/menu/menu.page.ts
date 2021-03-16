@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { FingerprintAIO } from '@ionic-native/fingerprint-aio/ngx';
 import { AboutMeComponent } from 'src/app/components/menu/about-me/about-me.component';
 import { ChangePassComponent } from 'src/app/components/menu/change-pass/change-pass.component';
 import { AuthService } from 'src/app/services/auth.service';
@@ -22,13 +23,22 @@ export class MenuPage implements OnInit {
     , private authSvc:AuthService
     , private firestoreCredSvc:FirestoreCredentialsService
     , private router:Router
+    , public faio: FingerprintAIO
   ) { }
-  lang = 'es';
+  
   settingsMap:{[key: string]: any} = {};
+
+  fingerprintAvailable:boolean;
   async ngOnInit() {
     this.settingsMap = await this.settingsSvc.readSettings();
-    // debugger;
-    console.log(this.settingsMap);    
+    this.faio.isAvailable().then(result => {
+      console.log(result);
+      this.fingerprintAvailable = true;
+
+    }).catch(err => {
+      console.error(err);
+      this.fingerprintAvailable = false;
+    });
   }
 
   selLang(){
@@ -39,9 +49,15 @@ export class MenuPage implements OnInit {
     this.settingsSvc.saveTheme(this.settingsMap.theme);
   }
 
-  setBioAccess(){
-    console.log(this.settingsMap.bioAccess);    
-    this.settingsSvc.saveBioAccess(this.settingsMap.bioAccess);
+  async setBioAccess(){
+    try{
+      let change = true;
+      if(this.settingsMap.bioAccess) change = await this.uiSvc.confirm('bioaccess-no-seguro', 'bioaccess-no-seguro-msg', 'activar');
+      if(change) await this.settingsSvc.saveBioAccess(this.settingsMap.bioAccess);
+      else this.settingsMap.bioAccess = false;
+    } catch(e){
+      this.uiSvc.error(e);
+    }
   }
 
   showAboutMe = () => this.modalSvc.showCommonModal(AboutMeComponent)

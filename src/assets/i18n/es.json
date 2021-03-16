@@ -49,8 +49,12 @@
     , "actualizando-pw":"Actualizando contraseña..."
     , "eliminar-cuenta-msg":"Al eliminar su cuenta, tanto su usuario como sus contraseñas serán borradas y no podrán ser recuperadas.\n¿Estás seguro de que quieres hacerlo?"
     , "eliminando-cuenta":"Eliminando cuenta... :("
-    , "habilitar-huella":"Acceso biométrico"
-    , "":""
+    , "acceso-biometrico":"Acceso biométrico"
+    , "bio-descripcion":"Escanea tu huella dactilar"
+    , "login-loading":"Iniciando sesión"
+    , "bioaccess-no-seguro":"Activar acceso biométrico"
+    , "bioaccess-no-seguro-msg":"Al activar el acceso biométrico, se almacena tu usuario y contraseña en el dispositivo, lo que disminuye la seguridad de esta aplicación en caso de robo o hackeo del mismo."
+    , "activar":"Activar"
     , "":""
     
     , "err": {
@@ -59,10 +63,13 @@
         , "save-cred":"Asegúrate de rellenar todos los campos obrigatorios (*)"
         , "wrong-old-pw":"Antigua contraseña incorrecta"
         , "error":"Algo salió mal"
+        , "undefined":"Algo salió mal"
         , "auth/argument-error":"Error en las credenciales"
         , "auth/user-not-found":"Este usuario no existe"
         , "auth/wrong-password":"Contraseña incorrecta"
         , "auth/email-already-in-use":"Este usuario ya existe"
+        , "-108":""
+        , "-102":"La huella no coincide"
         , "":""
     }
     

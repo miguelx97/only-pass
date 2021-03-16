@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { Plugins } from '@capacitor/core';
+import { CryptingService } from './crypting.service';
+import { AuthService } from './auth.service';
 const { Storage } = Plugins;
 
 @Injectable({
@@ -8,7 +10,10 @@ const { Storage } = Plugins;
 })
 export class SettingsService {
 
-  constructor(private translate: TranslateService) {}
+  constructor(
+    private translate: TranslateService
+    , private cryptingSvc:CryptingService
+    , private authSvc:AuthService) {}
 
   async saveLanguage(language:string){
     this.translate.setDefaultLang(language);
@@ -37,9 +42,16 @@ export class SettingsService {
     await Storage.set({key: ESettings.Theme, value: theme});
   }
 
-  async saveBioAccess(bio:boolean){
-    if(bio) await Storage.set({key: ESettings.BiometricalAccess, value: 'y'});
+  async saveBioAccess(bio:boolean = true){
+    if(bio) {
+      const username = this.authSvc.getUser().name;
+      const credentials = this.cryptingSvc.encryptCredentials(username);
+      await Storage.set({key: ESettings.BiometricalAccess, value: credentials});
+    }
     else await Storage.remove({key: ESettings.BiometricalAccess});
+  }
+  async getBioAccess():Promise<string>{
+    return (await Storage.get({key: ESettings.BiometricalAccess})).value;
   }
 
   async applyTheme() {

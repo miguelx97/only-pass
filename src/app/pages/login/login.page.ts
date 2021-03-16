@@ -1,20 +1,23 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { FingerprintAIO } from '@ionic-native/fingerprint-aio/ngx';
 import { IonSlides } from '@ionic/angular';
+import { user } from 'src/app/model/user';
 import { AuthService } from 'src/app/services/auth.service';
 import { CryptingService } from 'src/app/services/crypting.service';
 import { LocalStoragedCredentialsService } from 'src/app/services/local-storaged-credentials.service';
+import { SettingsService } from 'src/app/services/settings.service';
 import { UiService } from 'src/app/services/ui.service';
 import { UtilsService } from 'src/app/services/utils.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.page.html',
   styleUrls: ['./login.page.scss'],
 })
-export class LoginPage {
+export class LoginPage implements OnInit{
 
   @ViewChild('loginSlide') slide: IonSlides;
   constructor(
@@ -23,20 +26,24 @@ export class LoginPage {
     , private uiSvc:UiService
     , private router:Router
     , private utils:UtilsService
-    , public faio: FingerprintAIO
+    , public fingerprint: FingerprintAIO
+    , private settingsSvc:SettingsService
+    , private cryptingSvc:CryptingService
     ) { }
 
+    
   noPwSyncParam:any
-  async ionViewDidEnter() {    
-    this.slide?.lockSwipes( true );
-    this.syncMsg();
-  }
-
-  async syncMsg(){
+  enabledBioAccess:boolean;
+  async ngOnInit(): Promise<void> {
+    this.biometricAuth();    
     const numStoragedCredential = await this.lsCredentialsSvc.numStoragedCredential();
     const password:string = (await this.utils.trans('pw')).toLowerCase();
     if(numStoragedCredential === 1) this.noPwSyncParam = {numCredentials: `1 ${password}`}
     if(numStoragedCredential > 1) this.noPwSyncParam = {numCredentials: numStoragedCredential + `${password}s`}
+  }
+
+  async ionViewDidEnter() {    
+    this.slide?.lockSwipes( true );
   }
 
   // slideOpts = {
@@ -45,14 +52,33 @@ export class LoginPage {
   // };
 
   async login(loginForm:NgForm){
+    let user:user = {};
     try {
-      // loginValues = {username:'miguel', password:'mmmmmm'}
-      const {username, password} = loginForm.value;
-      await this.authSvc.login(username, password);
-      loginForm.reset();
-      this.authSuccess(password);   
+      if(this.enabledBioAccess && !this.fillingForm){
+        const title = await this.utils.trans('acceso-biometrico');
+        const description = await this.utils.trans('bio-descripcion');
+        const cancelButtonTitle = await this.utils.trans('cancelar');
+        
+        const fingerprintResult = await this.fingerprint.show({ title, description, cancelButtonTitle, disableBackup:true });
+        this.uiSvc.showLoading('login-loading');
+        if(fingerprintResult === 'biometric_success'){
+          const cryptedUser = await this.settingsSvc.getBioAccess();
+          const userJson = this.cryptingSvc.decryptData(cryptedUser, environment.cryptingKey);
+          user = JSON.parse(userJson);
+        }
+      } else {        
+        this.uiSvc.showLoading('login-loading');
+        // loginValues = {username:'miguel', password:'mmmmmm'}
+        user.name = loginForm.value.username;
+        user.password = loginForm.value.password;
+        loginForm.reset();
+      }
+      await this.authSvc.login(user.name, user.password);
+      this.authSuccess(user.password);   
     } catch(e) {
       this.uiSvc.error(e);
+    } finally {
+      this.uiSvc.hideLoading();
     }
   }
 
@@ -86,19 +112,20 @@ export class LoginPage {
   }
 
   async biometricAuth(){
-    try{
-      const title = await this.utils.trans('Acceso biométrico');
-      const description = await this.utils.trans('Escanea tu huella dactilar');
-      const cancelButtonTitle = await this.utils.trans('cancelar');
-  
-      const fingerprintResult = await this.faio.show({ title, description, cancelButtonTitle, disableBackup:true });
-      console.log('fingerprintResult ' + fingerprintResult);    
-      if(fingerprintResult === 'biometric_success'){
-        console.log("HOLAAAAAaa");
-      }
-    } catch(e){
-      console.log('fingerprintResultCatch ' + JSON.stringify(e));
-      this.uiSvc.error(e);
+    this.enabledBioAccess = !!(await this.settingsSvc.getBioAccess());
+
+    if(!this.enabledBioAccess) return;
+
+    try {await this.fingerprint.isAvailable();} catch(e){
+      console.error(e);
+      this.enabledBioAccess = false;
+    }
+  }
+
+  fillingForm:boolean;
+  onFillingForm(formValues:any){
+    if(this.enabledBioAccess){
+      this.fillingForm = !!(formValues.username + formValues.password);
     }
   }
 }

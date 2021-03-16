@@ -3,13 +3,14 @@ import { AngularFireAuth } from '@angular/fire/auth';
 import { ErrorSimple } from '../model/errors';
 import { UiService } from './ui.service';
 import firebase from 'firebase/app';
+import { user as User } from '../model/user';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  static UID:string
+  private user:User = {};
 
   constructor(
     private afAuth:AngularFireAuth
@@ -19,14 +20,16 @@ export class AuthService {
   async register(username:string, password:string): Promise<boolean> {
       const mail = this.buildMail(username);
       const { user } = await this.afAuth.createUserWithEmailAndPassword(mail, password);
-      AuthService.UID = user.uid;
+      this.user.uid = user.uid;
+      this.user.name = username;
       return this.uiSvc.success('register', {name: username.charAt(0).toUpperCase() + username.slice(1)}, 500);
   }
 
   async login(username:string, password:string): Promise<boolean>  {
       const mail = this.buildMail(username);      
       const { user } = await this.afAuth.signInWithEmailAndPassword(mail, password);
-      AuthService.UID = user.uid;
+      this.user.uid = user.uid;
+      this.user.name = username;
       return this.uiSvc.success('login', {name: username.charAt(0).toUpperCase() + username.slice(1)}, 500);
   }
 
@@ -73,4 +76,6 @@ export class AuthService {
   async logout(){
     await this.afAuth.signOut();
   }
+
+  getUser(){return this.user}
 }

@@ -16,6 +16,7 @@ export class FirestoreCredentialsService {
   constructor(
     private firestore:AngularFirestore
     , private uiSvc:UiService
+    , private authSvc:AuthService
     // , private utils:UtilsService
   ) {
     this.firestoreSettings();
@@ -27,7 +28,7 @@ export class FirestoreCredentialsService {
     try {
       if(!this.allPasswords){       
         const queryCollection: AngularFirestoreCollection<Credential> = this.firestore.collection("credentials"
-        , ref => ref.where('ownerId', '==', AuthService.UID).orderBy('title', 'asc')
+        , ref => ref.where('ownerId', '==', this.authSvc.getUser().uid).orderBy('title', 'asc')
         );
         this.allPasswords = queryCollection.valueChanges({ idField: 'id'})
       }
@@ -55,7 +56,7 @@ export class FirestoreCredentialsService {
   async save(credential:Credential){
     const currentDate = new Date();
     // const metadata = {ownerId : AuthService.UID, insertTime: currentDate, lastUpdateTime: new Date()};
-    const metadata = {ownerId : AuthService.UID};
+    const metadata = {ownerId : this.authSvc.getUser().uid};
     const credentialObj = Object.assign(metadata, credential);
     // await this.utils.wait(1000);
     await this.collection.add(credentialObj);

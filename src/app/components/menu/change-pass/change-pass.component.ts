@@ -7,6 +7,7 @@ import { ErrorSimple } from 'src/app/model/errors';
 import { AuthService } from 'src/app/services/auth.service';
 import { CryptingService } from 'src/app/services/crypting.service';
 import { FirestoreCredentialsService } from 'src/app/services/firestore-credentials.service';
+import { SettingsService } from 'src/app/services/settings.service';
 import { UiService } from 'src/app/services/ui.service';
 
 @Component({
@@ -22,6 +23,7 @@ export class ChangePassComponent {
     , private authSvc:AuthService
     , private cryptingSvc:CryptingService
     , private firestoreCredSvc:FirestoreCredentialsService
+    , private settingsSvc:SettingsService
     ) { }
 
   invalidForm:boolean = false;
@@ -44,6 +46,9 @@ export class ChangePassComponent {
         await this.firestoreCredSvc.update(credential);
       }));
       CryptingService.setSecretKey(newPw);
+      const bioAccessActivated:boolean = !!(await this.settingsSvc.getBioAccess());
+      if(bioAccessActivated) this.settingsSvc.saveBioAccess();
+      
       this.dismiss();
       this.uiSvc.success('pw-cambiada')
     } catch(e) {
@@ -54,7 +59,6 @@ export class ChangePassComponent {
     } finally{
       this.uiSvc.hideLoading();
     }
-    
   }
     
 

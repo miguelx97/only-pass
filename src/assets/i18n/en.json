@@ -49,6 +49,12 @@
     , "actualizando-pw":"Updating password..."
     , "eliminar-cuenta-msg":"By deleting your account, both your user and passwords will be deleted and cannot be recovered. Are you sure you want to do this?"
     , "eliminando-cuenta":"Deleting account... :("
+    , "acceso-biometrico":"Biometric access"
+    , "bio-descripcion":"Scan your fingerprint"
+    , "login-loading":"Loging in"
+    , "bioaccess-no-seguro":"Enable biometrical access"
+    , "bioaccess-no-seguro-msg":"When biometric access is enabled, your username and password are stored on the device, which decreases the security of this application in case of theft or hacking."
+    , "activar":"Activate"
     , "":""
     
     , "err": {
@@ -57,10 +63,13 @@
         , "save-cred":"Be sure to fill all required fields (*)"
         , "wrong-old-pw":"Incorrect old password"
         , "error":"Something went wrong"
+        , "undefined":"Something went wrong"
         , "auth/argument-error":"Error in the credentials"
         , "auth/user-not-found":"This user doesn't exist"
         , "auth/wrong-password":"Incorrect password"
         , "auth/email-already-in-use":"This username already exist"
+        , "-108":""
+        , "-102":"Fingerprint doesn't match"
         , "":""
     }
     

@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AES, enc } from 'crypto-js';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -39,5 +40,12 @@ export class CryptingService {
 
   static isSecretKeySetted():boolean{
     return !!CryptingService.encryptSecretKey;
+  }
+
+
+  encryptCredentials(username:string):string{
+    const user = {name:username, password:CryptingService.encryptSecretKey}
+    const userJson = JSON.stringify(user);
+    return this.encryptData(userJson, environment.cryptingKey);
   }
 }
