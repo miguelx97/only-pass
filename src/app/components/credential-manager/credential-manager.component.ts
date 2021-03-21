@@ -78,6 +78,17 @@ export class CredentialManagerComponent implements OnInit {
   cancel(){
     this.mode = Mode.View;
   }
+
+  copying:boolean = false;
+  async copy(value:string, msgWord:string){
+    if(this.copying) return;
+    this.utils.copy(value, msgWord);
+    this.copying = true;
+    await this.utils.wait(1000);
+    this.copying = false;
+  }
+
+  decryp = (password:string) => this.cryptingSvc.decryptData(password);
   
 }
 

@@ -13,7 +13,7 @@ export class UiService {
     , public alert: AlertController
     , private utils:UtilsService) { }
 
-  private async toast(message:string, duration:number = 3000, cssClass:string = 'simle') {
+  private async toast(message:string, duration:number = 3000, cssClass:string = 'simple') {
     const toast = await this.toastController.create({
       message, duration, cssClass
     });

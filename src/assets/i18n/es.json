@@ -21,7 +21,6 @@
     , "web":"Página web"
     , "add-cred-btn":"Añadir contraseña"
     , "copiar-pw":"Copiar contraseña"
-    , "pw-copiada":"Contraseña copiada"
     , "ir-web":"Ir a la web"
     , "menu":"Menú"
     , "ajustes":"Ajustes"
@@ -82,6 +81,13 @@
         , "cred-saved":"Contraseña guardada"
         , "pw-sync":"Contraseñas sincronizadas"
         , "pw-cambiada":"Has actualizado tu contraseña"
+        , "":""
+    }
+
+    , "copy": {
+        "pw":"Contraseña copiada"
+        , "user":"Usuario/Email copiado"
+        , "url":"Web copiada"
         , "":""
     }
 }

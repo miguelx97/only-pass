@@ -6,6 +6,7 @@ import { CryptingService } from 'src/app/services/crypting.service';
 import { FirestoreCredentialsService } from 'src/app/services/firestore-credentials.service';
 import { ModalService } from 'src/app/services/modal.service';
 import { UiService } from 'src/app/services/ui.service';
+import { UtilsService } from 'src/app/services/utils.service';
 import { Mode } from '../credential-manager/credential-manager.component';
 
 @Component({
@@ -24,18 +25,15 @@ export class CredentialSettingsPopoverComponent {
     , private modalSvc: ModalService
     , private firestoreCredSvc: FirestoreCredentialsService
     , private uiSvc: UiService
+    , private utils: UtilsService
     ) {}
     
     dismiss(option?:Option){
       this.popoverController.dismiss({option});
     }
 
-    copyPw(){
-    const { Clipboard } = Plugins;
-    Clipboard.write({
-      string: this.cryptingSvc.decryptData(this.credential.password)
-    });
-    this.uiSvc.info('pw-copiada', 1500)
+  copyPw(){
+    this.utils.copy(this.cryptingSvc.decryptData(this.credential.password), "pw", false);
     this.dismiss(Option.CopyPw);
   }
 

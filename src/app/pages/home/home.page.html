@@ -27,12 +27,12 @@
       <!-- {{credential | json}} -->
       <ion-card-title class="credential-card-title">
         {{credential.title}} 
-        <span class="url">{{credential.url}}</span>
+        <span ion-long-press class="url" (longPressed)="copy(credential.usernameOrEmail, 'url')" (click)="endCopy($event)">{{credential.url}}</span>
         <!-- <ion-icon name="link-outline"></ion-icon> -->
       </ion-card-title>
       <ion-card-content class="flex">
-        <p class="email">{{credential.usernameOrEmail}}</p>
-        <p class="password" [class]="(credential.options?.show)?'showing':'hidden'">{{credential.password | password:credential.options?.show }}</p>
+        <p ion-long-press class="email" (longPressed)="copy(credential.usernameOrEmail, 'user')" (click)="endCopy($event)">{{credential.usernameOrEmail}}</p>
+        <p ion-long-press (longPressed)="copy(decryp(credential.password), 'pw')" class="password" [class]="(credential.options?.show)?'showing':'hidden'" (click)="endCopy($event)">{{credential.password | password:credential.options?.show }}</p>
       </ion-card-content>
       <div class="icons">
         <ion-icon [name]="(credential.options?.show)?'eye-outline':'eye-off-outline'" (click)="showHidePw(credential, $event)"></ion-icon>

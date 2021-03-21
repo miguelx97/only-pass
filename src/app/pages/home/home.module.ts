@@ -8,6 +8,7 @@ import { HomePageRoutingModule } from './home-routing.module';
 import { PasswordModule } from 'src/app/pipes/password.module';
 import { CredentialsModule } from 'src/app/components/credentials.module';
 import { SharedModule } from 'src/app/shared.module';
+import { LongPressModule } from 'ionic-long-press';
 
 
 @NgModule({
@@ -18,7 +19,8 @@ import { SharedModule } from 'src/app/shared.module';
     HomePageRoutingModule,
     PasswordModule,
     CredentialsModule,
-    SharedModule
+    SharedModule,
+    LongPressModule
   ],
   declarations: [HomePage]
 })

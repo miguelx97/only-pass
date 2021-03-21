@@ -21,7 +21,6 @@
     , "web":"Web page"
     , "add-cred-btn":"Add new password"
     , "copiar-pw":"Copy password"
-    , "pw-copiada":"Password copied"
     , "ir-web":"Open website"
     , "menu":"Menu"
     , "ajustes":"Settings"
@@ -82,6 +81,13 @@
         , "cred-saved":"Credentials were saved successfully"
         , "pw-sync":"All passwords syncronized"
         , "pw-cambiada":"Main password updated"
+        , "":""
+    }
+
+    , "copy": {
+        "pw":"Copied password"
+        , "user":"Copied User/Email"
+        , "url":"Copied Web"
         , "":""
     }
 }

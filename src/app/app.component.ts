@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { KeyboardInfo, Plugins } from '@capacitor/core';
+import { Plugins } from '@capacitor/core';
 import { Platform } from '@ionic/angular';
 import { SettingsService } from './services/settings.service';
 

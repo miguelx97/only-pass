@@ -6,6 +6,7 @@ import { IonicModule } from '@ionic/angular';
 import { BtnShowCredentialManagerComponent } from './btn-show-credential-manager/btn-show-credential-manager.component';
 import { TranslateModule } from '@ngx-translate/core';
 import { CredentialSettingsPopoverComponent } from './credential-settings-popover/credential-settings-popover.component';
+import { LongPressModule } from 'ionic-long-press';
 
 
 
@@ -15,7 +16,8 @@ import { CredentialSettingsPopoverComponent } from './credential-settings-popove
     CommonModule,
     FormsModule,
     IonicModule,
-    TranslateModule
+    TranslateModule,
+    LongPressModule
   ],
   exports: [CredentialManagerComponent, BtnShowCredentialManagerComponent],
   schemas: [ NO_ERRORS_SCHEMA ]

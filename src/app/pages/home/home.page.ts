@@ -10,6 +10,7 @@ import { FirestoreCredentialsService } from 'src/app/services/firestore-credenti
 import { LocalStoragedCredentialsService } from 'src/app/services/local-storaged-credentials.service';
 import { ModalService } from 'src/app/services/modal.service';
 import { UiService } from 'src/app/services/ui.service';
+import { UtilsService } from 'src/app/services/utils.service';
 import { environment } from 'src/environments/environment';
 
 @Component({
@@ -29,6 +30,7 @@ export class HomePage implements OnInit{
     , private lsCredentialsSvc:LocalStoragedCredentialsService
     , private uiSvc:UiService
     , private cryptingSvc:CryptingService
+    , private utils:UtilsService
     // , private backgroundSvc:BackgroundService
   ) {}
 
@@ -58,8 +60,7 @@ export class HomePage implements OnInit{
   }
   
   showHidePw(credential:Credential, e){
-    e.stopPropagation();
-    e.preventDefault();
+    this.noAction(e);
     const show = !credential.options?.show;
     credential.options = {show}
   }
@@ -73,9 +74,13 @@ export class HomePage implements OnInit{
     )
   }
 
-  async settingsPopover(credential:Credential, e: any) {
+  noAction(e){
     e.stopPropagation();
     e.preventDefault();
+  }
+  
+  async settingsPopover(credential:Credential, e: any) {
+    this.noAction(e);
     const popover = await this.popoverController.create({
       component: CredentialSettingsPopoverComponent,
       cssClass: 'popover',
@@ -89,14 +94,22 @@ export class HomePage implements OnInit{
 
   showManager = (credential:Credential) => this.modalSvc.showCredentialsManager(credential);
 
-  goSettings(){
-    /*
-    Cambiar idioma.
-    Cambiar orden.
-    Como funciona.
-    Sobre la app.
-    Sobre el desarrollador.
-    */
+  copying:boolean = false;
+  async copy(value:string, msgWord:string){
+    if(this.copying) return;
+    this.utils.copy(value, msgWord);
+    this.copying = true;
+    await this.utils.wait(1000);
+    this.copying = false;
   }
+
+  endCopy(e){
+    if(this.copying){
+      this.noAction(e);
+      this.copying = false;
+    }
+  }
+
+  decryp = (password:string) => this.cryptingSvc.decryptData(password);
 }
 

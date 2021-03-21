@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
+import { BrowserModule, HAMMER_GESTURE_CONFIG } from '@angular/platform-browser';
 import { RouteReuseStrategy } from '@angular/router';
 
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
@@ -14,6 +14,7 @@ import { AngularFireModule } from '@angular/fire';
 import { environment } from 'src/environments/environment';
 import { MenuModule } from './components/menu/menu.module';
 import { FingerprintAIO } from '@ionic-native/fingerprint-aio/ngx';
+import { IonicGestureConfig } from './services/gestures.service';
 
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -42,6 +43,7 @@ export function createTranslateLoader(http: HttpClient) {
   providers: [
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
     , FingerprintAIO
+    , {provide: HAMMER_GESTURE_CONFIG, useClass: IonicGestureConfig}
   ],
   bootstrap: [AppComponent],
 })

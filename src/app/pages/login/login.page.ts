@@ -44,7 +44,6 @@ export class LoginPage implements OnInit {
     await this.lsCredentialsSvc.numStoragedCredential();
     
     $numCreds.subscribe(async numStoragedCredential => {
-      console.log("$numCreds.subscribe");      
       const password: string = (await this.utils.trans('pw')).toLowerCase();
       if (numStoragedCredential === 1)
       this.noPwSyncParam = { numCredentials: `1 ${password}` };
