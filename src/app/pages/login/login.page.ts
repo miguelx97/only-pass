@@ -30,7 +30,7 @@ export class LoginPage implements OnInit {
     , public fingerprint: FingerprintAIO
     , private settingsSvc:SettingsService
     , private cryptingSvc:CryptingService
-    ) { }
+  ) { }
     
   noPwSyncParam:any;
   enabledBioAccess:boolean;
@@ -46,9 +46,9 @@ export class LoginPage implements OnInit {
     $numCreds.subscribe(async numStoragedCredential => {
       const password: string = (await this.utils.trans('pw')).toLowerCase();
       if (numStoragedCredential === 1)
-      this.noPwSyncParam = { numCredentials: `1 ${password}` };
+        this.noPwSyncParam = { numCredentials: `1 ${password}` };
       if (numStoragedCredential > 1)
-      this.noPwSyncParam = { numCredentials: numStoragedCredential + ` ${password}s` };
+        this.noPwSyncParam = { numCredentials: numStoragedCredential + ` ${password}s` };
     })    
   }
 
@@ -70,7 +70,7 @@ export class LoginPage implements OnInit {
         const cancelButtonTitle = await this.utils.trans('cancelar');
         
         const fingerprintResult = await this.fingerprint.show({ title, description, cancelButtonTitle, disableBackup:true });
-        this.uiSvc.showLoading('login-loading');
+        await this.uiSvc.showLoading('login-loading');
         if(fingerprintResult === 'biometric_success'){
           const cryptedUser = await this.settingsSvc.getBioAccess();
           const userJson = this.cryptingSvc.decryptData(cryptedUser, environment.cryptingKey);
@@ -81,9 +81,9 @@ export class LoginPage implements OnInit {
         // loginValues = {username:'miguel', password:'mmmmmm'}
         user.name = loginForm.value.username;
         user.password = loginForm.value.password;
-        loginForm.reset();
       }
       await this.authSvc.login(user.name, user.password);
+      loginForm?.reset();
       this.authSuccess(user.password);   
     } catch(e) {
       this.uiSvc.error(e);

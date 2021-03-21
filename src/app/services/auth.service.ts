@@ -35,6 +35,7 @@ export class AuthService {
 
   buildMail(username:string):string{
     if(username){
+      username = username.trim();
       const emailRegex = /^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$/
       if(emailRegex.test(username)) return username;
       const validNameRegex = /^([a-zA-Z0-9_\-\.]{3,})$/

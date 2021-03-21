@@ -12,6 +12,9 @@ import { ModalService } from 'src/app/services/modal.service';
 import { UiService } from 'src/app/services/ui.service';
 import { UtilsService } from 'src/app/services/utils.service';
 import { environment } from 'src/environments/environment';
+import { Plugins, HapticsImpactStyle } from '@capacitor/core';
+import { Platform } from '@ionic/angular';
+const { Haptics } = Plugins;
 
 @Component({
   selector: 'app-home',
@@ -31,6 +34,7 @@ export class HomePage implements OnInit{
     , private uiSvc:UiService
     , private cryptingSvc:CryptingService
     , private utils:UtilsService
+    , public platform: Platform
     // , private backgroundSvc:BackgroundService
   ) {}
 
@@ -63,6 +67,7 @@ export class HomePage implements OnInit{
     this.noAction(e);
     const show = !credential.options?.show;
     credential.options = {show}
+    if(this.platform.is('capacitor')) Haptics.impact({style: HapticsImpactStyle.Light});
   }
 
   onSearch(event:any){

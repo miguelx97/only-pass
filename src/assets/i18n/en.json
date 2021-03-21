@@ -67,6 +67,7 @@
         , "auth/user-not-found":"This user doesn't exist"
         , "auth/wrong-password":"Incorrect password"
         , "auth/email-already-in-use":"This username already exist"
+        , "auth/too-many-request":"Too many login attempts"
         , "-108":""
         , "-102":"Fingerprint doesn't match"
         , "":""

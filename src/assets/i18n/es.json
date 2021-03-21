@@ -67,6 +67,7 @@
         , "auth/user-not-found":"Este usuario no existe"
         , "auth/wrong-password":"Contraseña incorrecta"
         , "auth/email-already-in-use":"Este usuario ya existe"
+        , "auth/too-many-request":"Has intentado entrar demasiadas veces"
         , "-108":""
         , "-102":"La huella no coincide"
         , "":""

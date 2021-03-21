@@ -27,7 +27,6 @@ export class UtilsService {
     return new Promise(resolve => {
       setTimeout(function(){
         // console.log("waited ", time);
-        
         resolve(null);
       }, time);
     });
