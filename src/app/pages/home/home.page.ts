@@ -10,7 +10,6 @@ import { FirestoreCredentialsService } from 'src/app/services/firestore-credenti
 import { LocalStoragedCredentialsService } from 'src/app/services/local-storaged-credentials.service';
 import { ModalService } from 'src/app/services/modal.service';
 import { UiService } from 'src/app/services/ui.service';
-import { UtilsService } from 'src/app/services/utils.service';
 import { environment } from 'src/environments/environment';
 import { Plugins, HapticsImpactStyle } from '@capacitor/core';
 import { Platform } from '@ionic/angular';
@@ -33,7 +32,6 @@ export class HomePage implements OnInit{
     , private lsCredentialsSvc:LocalStoragedCredentialsService
     , private uiSvc:UiService
     , private cryptingSvc:CryptingService
-    , private utils:UtilsService
     , public platform: Platform
     // , private backgroundSvc:BackgroundService
   ) {}
@@ -97,24 +95,25 @@ export class HomePage implements OnInit{
     return await popover.present();
   }
 
-  showManager = (credential:Credential) => this.modalSvc.showCredentialsManager(credential);
+  showManager = (credential?:Credential) => this.modalSvc.showCredentialsManager(credential);
+  
 
-  copying:boolean = false;
-  async copy(value:string, msgWord:string){
-    if(this.copying) return;
-    this.utils.copy(value, msgWord);
-    this.copying = true;
-    await this.utils.wait(1000);
-    this.copying = false;
-  }
+  // copying:boolean = false;
+  // async copy(value:string, msgWord:string){
+  //   if(this.copying) return;
+  //   this.utils.copy(value, msgWord);
+  //   this.copying = true;
+  //   await this.utils.wait(1000);
+  //   this.copying = false;
+  // }
 
-  endCopy(e){
-    if(this.copying){
-      this.noAction(e);
-      this.copying = false;
-    }
-  }
+  // endCopy(e){
+  //   if(this.copying){
+  //     this.noAction(e);
+  //     this.copying = false;
+  //   }
+  // }
 
-  decryp = (password:string) => this.cryptingSvc.decryptData(password);
+  // decryp = (password:string) => this.cryptingSvc.decryptData(password);
 }
 

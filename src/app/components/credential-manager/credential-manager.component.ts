@@ -16,6 +16,7 @@ import { environment } from 'src/environments/environment';
 export class CredentialManagerComponent implements OnInit {
 
   credential:Credential
+  credentialOld:Credential
   mode:Mode;
   eMode = Mode;
   constructor(
@@ -32,6 +33,7 @@ export class CredentialManagerComponent implements OnInit {
       this.credential = new Credential();
       this.mode = Mode.New;
     }else{
+      this.credentialOld = Credential.copy(this.credential);
       if(!this.mode) this.mode = Mode.View;
       this.credential = Credential.copy(this.credential);
       this.utils.wait().then(()=>{
@@ -77,6 +79,8 @@ export class CredentialManagerComponent implements OnInit {
 
   cancel(){
     this.mode = Mode.View;
+    this.credential = Credential.copy(this.credentialOld);
+    this.credential.password = this.cryptingSvc.decryptData(this.credential.password);
   }
 
   copying:boolean = false;

@@ -54,6 +54,9 @@
     , "bioaccess-no-seguro":"Activar acceso biométrico"
     , "bioaccess-no-seguro-msg":"Al activar el acceso biométrico, se almacena tu usuario y contraseña en el dispositivo, lo que disminuye la seguridad de esta aplicación en caso de robo o hackeo del mismo."
     , "activar":"Activar"
+    , "add-first-pw":"Añade tu primera contraseña"
+    , "no-results":"Sin resultados"
+    , "check-search":"Comprueba que escribiste bien el nombre"
     , "":""
     
     , "err": {

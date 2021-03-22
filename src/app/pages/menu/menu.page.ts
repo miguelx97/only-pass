@@ -36,7 +36,7 @@ export class MenuPage implements OnInit {
       this.fingerprintAvailable = true;
 
     }).catch(err => {
-      console.error(err);
+      console.log(err);
       this.fingerprintAvailable = false;
     });
   }

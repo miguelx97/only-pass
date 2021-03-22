@@ -54,6 +54,9 @@
     , "bioaccess-no-seguro":"Enable biometrical access"
     , "bioaccess-no-seguro-msg":"When biometric access is enabled, your username and password are stored on the device, which decreases the security of this application in case of theft or hacking."
     , "activar":"Activate"
+    , "add-first-pw":"Add your first password"
+    , "no-results":"No results found"
+    , "check-search":"Check you typed the right name"
     , "":""
     
     , "err": {

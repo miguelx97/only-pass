@@ -63,6 +63,15 @@ export class LoginPage implements OnInit {
 
   async login(loginForm:NgForm){
     let user:user = {};
+
+    // TEST
+    // user = {name:'miguel', password:'mmmmmm'}
+    // this.fillingForm = true;
+    // await this.authSvc.login(user.name, user.password);
+    // this.authSuccess(user.password);  
+    // return;
+    // TEST END
+
     try {
       if(this.enabledBioAccess && !this.fillingForm){
         const title = await this.utils.trans('acceso-biometrico');
@@ -78,7 +87,6 @@ export class LoginPage implements OnInit {
         }
       } else {        
         this.uiSvc.showLoading('login-loading');
-        // loginValues = {username:'miguel', password:'mmmmmm'}
         user.name = loginForm.value.username;
         user.password = loginForm.value.password;
       }

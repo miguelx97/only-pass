@@ -102,3 +102,18 @@ ion-card {
   background: var(--ion-color-light);
   opacity: .7;
 }
+
+.default-img{
+  text-align: center;
+  margin: 30% 10%;
+  opacity: .7;
+  img {
+    max-width: 40%;
+  }
+  h1 {
+    font-size: xx-large;
+  }
+  h5 {
+    color: var(--ion-color-primary);
+  }
+}
