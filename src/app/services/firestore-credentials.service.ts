@@ -63,8 +63,8 @@ export class FirestoreCredentialsService {
   }
 
   async update(credential:Credential){
-    // const credentialObj = Object.assign({lastUpdateTime: new Date()}, credential);
-      await this.collection.doc(credential.id).update(credential);
+    const credentialObj = Object.assign({}, credential);
+    await this.collection.doc(credential.id).update(credentialObj);
   }
 
   async remove(credential:Credential){

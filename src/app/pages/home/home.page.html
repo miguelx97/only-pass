@@ -23,7 +23,7 @@
 
 <ion-content>
   <div class="limit-size" style="margin-top: 18px;">
-
+    
     <div *ngIf="(lCredentials | async)?.length === 0; else thereAreCreds">
       <div class="default-img" (click)="showManager()">
         <img src="/assets/images/add.svg" alt="añade contraseña">

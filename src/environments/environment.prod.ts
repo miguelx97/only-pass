@@ -1,13 +1,12 @@
 export const environment = {
   production: true,
-  cryptingKey: "RANDOM_SECRET_KEY",
-  firebaseConfig: {
-    //Start a project in firebase
-    apiKey: "xxxxxxxxxxxxxxxxxxxxxxx",
-    authDomain: "xxxxxxx.firebaseapp.com",
-    projectId: "xxxxxxx",
-    storageBucket: "xxxxxxx.appspot.com",
-    messagingSenderId: "xxxxxxx",
-    appId: "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+  cryptingKey: "Usf5HeDP9nFXZaAL11yM",
+  firebaseConfig: { //SET YOUR OWN FIREBASE PROJECT :)
+    apiKey: "AIzaSyCXf-uNHbBveJodj3oiGZlfN5qu3LNcO5Q",
+    authDomain: "only-pass.firebaseapp.com",
+    projectId: "only-pass",
+    storageBucket: "only-pass.appspot.com",
+    messagingSenderId: "13264645060",
+    appId: "1:13264645060:web:9aa4dd9ca6d74fe1019291"
   }
 };
