@@ -3,7 +3,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { Plugins } from '@capacitor/core';
 import { CryptingService } from './crypting.service';
 import { AuthService } from './auth.service';
-const { Storage } = Plugins;
+const { Storage, Device } = Plugins;
 
 @Injectable({
   providedIn: 'root'
@@ -16,9 +16,14 @@ export class SettingsService {
     , private authSvc:AuthService) {}
 
   async saveLanguage(language:string){
+    await Storage.set({key: ESettings.Language, value: language});
+    if(!language){
+      const languageDevice: string = (await Device.getLanguageCode()).value;
+      if(languageDevice?.startsWith('es')) language = 'es';
+      else language = 'en';
+    }
     this.translate.setDefaultLang(language);
     this.translate.use(language);
-    await Storage.set({key: ESettings.Language, value: language});
   }
 
   async applyLanguage() {
@@ -27,10 +32,9 @@ export class SettingsService {
 
     if(languageSaved)language = languageSaved;
     else{
-      const { Device } = Plugins;
       const languageDevice: string = (await Device.getLanguageCode()).value;
       if(!languageDevice?.startsWith('es')) language = 'en';
-      await Storage.set({ key: ESettings.Language, value: language });
+      // await Storage.set({ key: ESettings.Language, value: language });
     }
     this.translate.setDefaultLang(language);
     this.translate.use(language);
@@ -38,7 +42,7 @@ export class SettingsService {
 
   async saveTheme(theme:string){
     document.body.className = "";
-    document.body.classList.add(theme);
+    if(theme) document.body.classList.add(theme);
     await Storage.set({key: ESettings.Theme, value: theme});
   }
 

@@ -8,6 +8,7 @@ import { FirestoreCredentialsService } from 'src/app/services/firestore-credenti
 import { ModalService } from 'src/app/services/modal.service';
 import { SettingsService } from 'src/app/services/settings.service';
 import { UiService } from 'src/app/services/ui.service';
+import { UtilsService } from 'src/app/services/utils.service';
 
 @Component({
   selector: 'app-menu',
@@ -23,21 +24,24 @@ export class MenuPage implements OnInit {
     , private authSvc:AuthService
     , private firestoreCredSvc:FirestoreCredentialsService
     , private router:Router
-    , public faio: FingerprintAIO
+    , private faio: FingerprintAIO
+    , private utils:UtilsService
   ) { }
   
   settingsMap:{[key: string]: any} = {};
 
   fingerprintAvailable:boolean;
-  async ngOnInit() {
-    this.settingsMap = await this.settingsSvc.readSettings();
-    this.faio.isAvailable().then(result => {
-      console.log(result);
+  loaded:boolean;
+  ngOnInit() {
+    this.settingsSvc.readSettings().then(async settings => {
+      this.settingsMap = settings
+      await this.utils.wait(200);
+      this.loaded = true;
+    });
+    this.faio.isAvailable().then(() => {
       this.fingerprintAvailable = true;
-
     }).catch(err => {
-      console.log(err);
-      this.fingerprintAvailable = false;
+      this.fingerprintAvailable = true;
     });
   }
 
@@ -50,10 +54,11 @@ export class MenuPage implements OnInit {
   }
 
   async setBioAccess(){
+    if(!this.loaded) return;  //BUG: Al iniciar el menú el toggle cambia y salta el popup
     try{
-      let change = true;
+      let change:boolean;
       if(this.settingsMap.bioAccess) change = await this.uiSvc.confirm('bioaccess-no-seguro', 'bioaccess-no-seguro-msg', 'activar');
-      if(change) await this.settingsSvc.saveBioAccess(this.settingsMap.bioAccess);
+      if(change || !this.settingsMap.bioAccess) await this.settingsSvc.saveBioAccess(this.settingsMap.bioAccess);
       else this.settingsMap.bioAccess = false;
     } catch(e){
       this.uiSvc.error(e);
