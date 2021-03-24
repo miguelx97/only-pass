@@ -140,3 +140,16 @@ font-size: 18px !important;
 body.keyboard-is-open .keyboard-hide{
     display: none !important;
 }
+
+.input-icon-wrapper{
+    display: flex;
+    width: 100%;
+    align-items: center;
+    
+    ion-icon{
+        font-size: 1.2rem;
+        color: var(--ion-color-primary);
+        padding: 5px;
+        cursor: pointer;
+    }
+}

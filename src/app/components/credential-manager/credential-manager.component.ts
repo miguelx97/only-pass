@@ -93,6 +93,12 @@ export class CredentialManagerComponent implements OnInit {
   }
 
   decryp = (password:string) => this.cryptingSvc.decryptData(password);
+
+  generatePassword(){
+    const pw = this.utils.randomString(16);
+    this.credential.password = pw;
+    this.utils.copy(pw, 'pw', true);
+  }
   
 }
 
