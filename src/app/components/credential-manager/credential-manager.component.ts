@@ -7,6 +7,7 @@ import { FirestoreCredentialsService } from 'src/app/services/firestore-credenti
 import { LocalStoragedCredentialsService } from 'src/app/services/local-storaged-credentials.service';
 import { UtilsService } from 'src/app/services/utils.service';
 import { environment } from 'src/environments/environment';
+import { Platform } from '@ionic/angular';
 
 @Component({
   selector: 'app-credential-manager',
@@ -25,6 +26,7 @@ export class CredentialManagerComponent implements OnInit {
     , private lsCredentialsSvc:LocalStoragedCredentialsService
     , private firestoreCredSvc:FirestoreCredentialsService
     , private utils:UtilsService
+    , private platform: Platform
   ) { }
 
   @ViewChild('title') titleField:HTMLIonInputElement ;
@@ -41,7 +43,7 @@ export class CredentialManagerComponent implements OnInit {
       });
     }
     
-    if(this.mode !== Mode.View) this.utils.wait(700).then(() => this.titleField.setFocus());
+    if(this.mode !== Mode.View && this.platform.is('desktop')) this.utils.wait(700).then(() => this.titleField.setFocus());
   }
 
   invalidForm:boolean;
@@ -72,7 +74,7 @@ export class CredentialManagerComponent implements OnInit {
   @ViewChild('password') passwordField:HTMLIonInputElement ;
   modify() {
     this.mode = Mode.Edit;
-    this.passwordField.setFocus();
+    if(this.platform.is('desktop')) this.passwordField.setFocus();
   }
 
   dismiss = () => this.modalCtrl.dismiss();

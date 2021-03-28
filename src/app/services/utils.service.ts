@@ -14,7 +14,7 @@ export class UtilsService {
   constructor(
     private translate:TranslateService
     , private toastController: ToastController
-    , public platform: Platform){
+    , private platform: Platform){
 
   }
   

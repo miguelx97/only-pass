@@ -3,7 +3,6 @@ import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { FingerprintAIO } from '@ionic-native/fingerprint-aio/ngx';
 import { IonSlides } from '@ionic/angular';
-import { BehaviorSubject, Subject } from 'rxjs';
 import { user } from 'src/app/model/user';
 import { AuthService } from 'src/app/services/auth.service';
 import { CryptingService } from 'src/app/services/crypting.service';
@@ -65,11 +64,11 @@ export class LoginPage implements OnInit {
     let user:user = {};
 
     // TEST
-    // user = {name:'miguel', password:'mmmmmm'}
-    // this.fillingForm = true;
-    // await this.authSvc.login(user.name, user.password);
-    // this.authSuccess(user.password);  
-    // return;
+    user = {name:'miguel', password:'mmmmmm'}
+    this.fillingForm = true;
+    await this.authSvc.login(user.name, user.password);
+    this.authSuccess(user.password);  
+    return;
     // TEST END
 
     try {
