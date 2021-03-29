@@ -63,12 +63,12 @@ export class LoginPage implements OnInit {
   async login(loginForm:NgForm){
     let user:user = {};
 
-    // TEST
-    user = {name:'miguel', password:'mmmmmm'}
-    this.fillingForm = true;
-    await this.authSvc.login(user.name, user.password);
-    this.authSuccess(user.password);  
-    return;
+    // // TEST
+    // user = {name:'miguel', password:'mmmmmm'}
+    // this.fillingForm = true;
+    // await this.authSvc.login(user.name, user.password);
+    // this.authSuccess(user.password);  
+    // return;
     // TEST END
 
     try {

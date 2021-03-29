@@ -20,7 +20,7 @@
               </password-wrapper>
             </ion-item>
             <div class="buttons">
-              <ion-button type="submit" expand="block" ><!--[disabled]="loginForm.invalid && (!enabledBioAccess || fillingForm)"-->
+              <ion-button type="submit" expand="block" [disabled]="loginForm.invalid && (!enabledBioAccess || fillingForm)"><!---->
                 {{'signin-btn' | translate}}
                 <ion-icon name="finger-print-outline" slot="end" *ngIf="enabledBioAccess && !fillingForm"></ion-icon>
               </ion-button>
