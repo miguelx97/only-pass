@@ -45,15 +45,15 @@ export class AuthService {
     throw new ErrorSimple('invalid-username','el username no cumple la regex');
   }
 
-  async changePassword(oldPassword:string, newPassword:string){
-    try{
-      var user = await this.afAuth.currentUser;
-      const credentials = firebase.auth.EmailAuthProvider.credential(user.email, oldPassword);
-      const userAuth = await user.reauthenticateWithCredential(credentials);
-    } catch(e) {
-      this.uiSvc.error(e);      
-    }
-  }
+  // async changePassword(oldPassword:string, newPassword:string){
+  //   try{
+  //     var user = await this.afAuth.currentUser;
+  //     const credentials = firebase.auth.EmailAuthProvider.credential(user.email, oldPassword);
+  //     const userAuth = await user.reauthenticateWithCredential(credentials);
+  //   } catch(e) {
+  //     this.uiSvc.error(e);      
+  //   }
+  // }
 
   async reauthenticate(oldPassword:string){
       var user = await this.afAuth.currentUser;
@@ -62,7 +62,12 @@ export class AuthService {
       return user;
   }
 
-  
+  /**
+   * 
+   * @param oldPassword Password you were using
+   * @param newPassword Password you wanna use
+   * @returns 
+   */
   async updatePassword(oldPassword:string, newPassword:string): Promise<boolean> {
       const user = await this.reauthenticate(oldPassword);
       await user.updatePassword(newPassword);
