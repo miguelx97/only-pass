@@ -13,6 +13,7 @@ import { UiService } from 'src/app/services/ui.service';
 import { environment } from 'src/environments/environment';
 import { Plugins, HapticsImpactStyle } from '@capacitor/core';
 import { Platform } from '@ionic/angular';
+import { UtilsService } from 'src/app/services/utils.service';
 const { Haptics } = Plugins;
 
 @Component({
@@ -33,6 +34,7 @@ export class HomePage implements OnInit{
     , private uiSvc:UiService
     , private cryptingSvc:CryptingService
     , public platform: Platform
+    , private utils:UtilsService
     // , private backgroundSvc:BackgroundService
   ) {}
 
@@ -96,6 +98,12 @@ export class HomePage implements OnInit{
   }
 
   showManager = (credential?:Credential) => this.modalSvc.showCredentialsManager(credential);
+
+  async goWebAndCopyPw(credential:Credential, e: any) {
+    this.noAction(e);
+    await this.utils.copy(this.cryptingSvc.decryptData(credential.password), "pw", false);
+    await this.utils.openUrl(credential.url);
+  }
   
 
   // copying:boolean = false;

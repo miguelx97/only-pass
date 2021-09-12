@@ -55,6 +55,7 @@
       <div class="icons">
         <ion-icon [name]="(credential.options?.show)?'eye-outline':'eye-off-outline'" (click)="showHidePw(credential, $event)"></ion-icon>
         <ion-icon name="ellipsis-vertical-outline" (click)="settingsPopover(credential, $event)"></ion-icon> <!--ion-popover-->
+        <ion-icon name="chevron-forward-outline" (click)="goWebAndCopyPw(credential, $event)"></ion-icon>
       </div>
     </ion-card>
   </div>

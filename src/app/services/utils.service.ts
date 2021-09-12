@@ -4,7 +4,7 @@ import { ToastController } from '@ionic/angular';
 import { TranslateService } from '@ngx-translate/core';
 import { first } from 'rxjs/operators';
 import { Platform } from '@ionic/angular';
-const { Clipboard, Haptics } = Plugins;
+const { Clipboard, Haptics, Browser } = Plugins;
 
 @Injectable({
   providedIn: 'root'
@@ -33,7 +33,7 @@ export class UtilsService {
   }
 
   async copy(value:string, msgWord:string, vibrate:boolean = true){
-    Clipboard.write({
+    await Clipboard.write({
       string: value
     });
 
@@ -42,7 +42,7 @@ export class UtilsService {
 
     if(vibrate && this.platform.is('capacitor')) Haptics.impact({style: HapticsImpactStyle.Medium});
 
-    this.toastController.create({
+    await this.toastController.create({
       message
       , duration: 2000
       , cssClass: 'simple'
@@ -57,5 +57,10 @@ export class UtilsService {
        result += characters.charAt(Math.floor(Math.random() * charactersLength));
     }
     return result;
+ }
+
+ async openUrl(url:string){
+  if(!url.startsWith('https://') || !url.startsWith('http://')) url = 'https://' + url.replace('www.', '');
+  await Browser.open({ url });
  }
 }

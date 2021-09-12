@@ -1,6 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { Plugins } from '@capacitor/core';
-import { AlertController, ModalController, PopoverController } from '@ionic/angular';
+import { Component } from '@angular/core';
+import { PopoverController } from '@ionic/angular';
 import { Credential } from 'src/app/model/credential';
 import { CryptingService } from 'src/app/services/crypting.service';
 import { FirestoreCredentialsService } from 'src/app/services/firestore-credentials.service';
@@ -38,10 +37,7 @@ export class CredentialSettingsPopoverComponent {
   }
 
   async openUrl(){
-    const { Browser } = Plugins;
-    let url = this.credential.url;
-    if(!url.startsWith('https://') || !url.startsWith('http://')) url = 'https://' + url.replace('www.', '');
-    await Browser.open({ url });
+    await this.utils.openUrl(this.credential.url);
     // this.uiSvc.info('abriendo-url', 1500)
     this.dismiss(Option.LinkWeb);
   }
